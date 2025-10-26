@@ -1,21 +1,19 @@
 body {
-    margin: 0; /* Asegura que no haya márgenes alrededor del cuerpo */
-    padding: 0; /* Asegura que no haya padding alrededor del cuerpo */
+    margin: 0;
+    padding: 0; 
     font-family: sans-serif;
     display: flex;
     justify-content: center;
-    /* Eliminamos el padding lateral del body si queremos un ancho total */
     background-color: #f0f0f0; 
 }
 
 .grid-layout {
-    width: 100%; /* Permite que ocupe todo el ancho disponible */
-    /* ELIMINAMOS O COMENTAMOS: max-width: 900px; */ 
+    width: 100%; 
     display: flex;
     flex-direction: column; 
     gap: 10px;
-    padding: 20px; /* Añadimos un padding interno para evitar que los ítems toquen los bordes */
-    box-sizing: border-box; /* Asegura que el padding no añada más ancho */
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .grid-row {

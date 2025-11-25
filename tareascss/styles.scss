@@ -1,0 +1,198 @@
+$color-background: #CCC;
+$color-base: #333;
+
+/// --- 1. Definición de Variables y Mapa ---
+
+// Colores primarios del menú
+$navbar-background-color: rgb(145,155,111);
+$navbar-color-hover: white;
+$navbar-text-color: #333;
+
+// Propiedades de borde
+$border-color: $color-base;
+$border-style: "solid";
+$border-width: 0.1rem;
+$border-radius: 1rem;
+
+// Layout
+$main-container-width: 95%; 
+$card-padding: 0.8rem;
+$container-gap: 1rem; 
+
+// Colores de los botones (usado en @each)
+$theme-colors: (
+    "error" : #FF0000,           
+    "warning" : rgb(239, 241, 120), 
+    "accepted" : rgb(55, 138, 0),    
+    "normal" : rgb(0, 110, 255)     
+);
+
+// Colores de fondo de las tarjetas (versiones más claras)
+$card-backgrounds: (
+    "card-1": rgb(167, 213, 114),
+    "card-2": rgb(112, 169, 239),
+    "card-3": rgb(228, 203, 76),
+    "card-4": rgb(173, 137, 201)
+);
+
+$btn-border-radius: 0.4rem;
+
+/// --- 2. Función Definida por el Usuario ---
+@function calc-card-width($columns: 2) {
+    $total-gap-space: $container-gap * ($columns - 1);
+    @return calc((100% - #{$total-gap-space}) / #{$columns});
+}
+
+/// --- 3. Mixin para Estilos de Borde ---
+@mixin apply-border($color: $border-color, $width: $border-width) {
+    border: $width #{$border-style} $color;
+    border-radius: $border-radius;
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    width: $main-container-width;
+    margin: 0 auto;
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: $container-gap; 
+}
+
+nav {
+    width: 100%;
+    background-color: $navbar-background-color;
+    padding: 0.2rem;
+    color: $navbar-text-color;
+
+    ul {
+        display: flex;
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+        
+        li {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+
+            &.espaciado {
+                margin-left: auto; 
+                display: flex;
+                align-items: center;
+
+                a {
+                    padding: 0.2rem 0.5rem;
+                    margin-left: 0.2rem;
+                }
+            }
+
+            a {
+                color: $navbar-text-color;
+                text-decoration: none;
+
+                &:hover {
+                    color: $navbar-color-hover;
+                }
+            }
+            
+            &.active {
+                @if ($navbar-text-color == #333) {
+                    font-weight: bolder;
+                    text-decoration: underline;
+                } @else {
+                    font-weight: normal;
+                }
+            }
+        }
+    }
+}
+
+figure.card {
+    width: calc-card-width(2);
+    box-sizing: border-box;
+    @include apply-border();
+    padding: $card-padding;
+
+    img {
+        border-radius: $border-radius $border-radius 0 0;
+        width: 100%;
+        height: 180px; 
+        object-fit: cover;
+    }
+
+    figcaption {
+        font-size: 0.8rem;
+        text-align: center;
+        padding: 0.5rem 0;
+
+        .btn {
+            display: block; 
+            width: fit-content;
+            margin: 0.5rem auto; 
+            padding: 0.3rem 0.8rem;
+            text-shadow: 0 0 1px #00000080;
+        }
+
+        p {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: normal;
+            text-align: left;
+            padding: 0 0.5rem; 
+        }
+    }
+
+    @for $i from 1 through length($card-backgrounds) {
+        @debug "Aplicando estilo a la tarjeta #{$i}";
+
+        &:nth-of-type(#{$i}) {
+            $color-key: "card-#{$i}";
+            background-color: map-get($card-backgrounds, $color-key);
+        }
+    }
+    
+    $max-cards: 4;
+    $j: 1;
+    @while $j < $max-cards {
+        $j: $j + 1;
+    }
+    @if ($border-radius <= 0) {
+        @error "La variable $border-radius debe ser mayor que 0.";
+    }
+}
+
+
+// --- Estilos para Botones ---
+.btn {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    border-radius: $btn-border-radius;
+    
+    &:hover {
+        box-shadow: $btn-border-radius/2 $btn-border-radius/2 #888;
+    }
+    
+    &:active {
+        background-color: orange;
+        color: white;
+    }
+}
+
+@each $name, $color in $theme-colors {
+    .btn-#{$name} {
+        background-color: $color;
+                @if (lightness($color) < 50) {
+            color: white;
+        }
+
+        nav &.btn {
+            color: white;
+            font-size: 0.8rem;
+            padding: 0.3rem 0.6rem;
+        }
+    }
+}

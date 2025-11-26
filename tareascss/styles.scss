@@ -126,6 +126,9 @@ figure.card {
         font-size: 0.8rem;
         text-align: center;
         padding: 0.5rem 0;
+        border: $border-width $border-style $border-color;
+        border-radius: $btn-border-radius;
+        margin: $card-padding;
 
         .btn {
             display: block; 

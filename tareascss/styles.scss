@@ -1,201 +1,190 @@
 $color-background: #CCC;
 $color-base: #333;
 
-/// --- 1. Definición de Variables y Mapa ---
-
-// Colores primarios del menú
+//Menu
 $navbar-background-color: rgb(145,155,111);
-$navbar-color-hover: white;
-$navbar-text-color: #333;
+$navbar-color-hover: $color-background;
 
-// Propiedades de borde
+//bordes
 $border-color: $color-base;
 $border-style: "solid";
 $border-width: 0.1rem;
 $border-radius: 1rem;
-
-// Layout
-$main-container-width: 95%; 
-$card-padding: 0.8rem;
-$container-gap: 1rem; 
-
-// Colores de los botones (usado en @each)
-$theme-colors: (
-    "error" : #FF0000,           
-    "warning" : rgb(239, 241, 120), 
-    "accepted" : rgb(55, 138, 0),    
-    "normal" : rgb(0, 110, 255)     
-);
-
-// Colores de fondo de las tarjetas (versiones más claras)
-$card-backgrounds: (
-    "card-1": rgb(167, 213, 114),
-    "card-2": rgb(112, 169, 239),
-    "card-3": rgb(228, 203, 76),
-    "card-4": rgb(173, 137, 201)
-);
-
-$btn-border-radius: 0.4rem;
-
-/// --- 2. Función Definida por el Usuario ---
-@function calc-card-width($columns: 2) {
-    $total-gap-space: $container-gap * ($columns - 1);
-    @return calc((100% - #{$total-gap-space}) / #{$columns});
-}
-
-/// --- 3. Mixin para Estilos de Borde ---
-@mixin apply-border($color: $border-color, $width: $border-width) {
-    border: $width #{$border-style} $color;
-    border-radius: $border-radius;
-}
-
-body {
-    margin: 0;
-}
-
+$main-container-width: 80%;
 .container {
     width: $main-container-width;
     margin: 0 auto;
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: $container-gap; 
 }
 
 nav {
-    width: 100%;
     background-color: $navbar-background-color;
     padding: 0.2rem;
-    color: $navbar-text-color;
-
     ul {
         display: flex;
-        list-style: none;
+        align-items: center;
         padding-left: 0;
-        margin: 0;
-        
-        li {
+        li{
             display: inline-block;
-            padding: 0.5rem 1rem;
-
-            &.espaciado {
-                margin-left: auto; 
-                display: flex;
-                align-items: center;
-
-                a {
-                    padding: 0.2rem 0.5rem;
-                    margin-left: 0.2rem;
-                }
-            }
-
-            a {
-                color: $navbar-text-color;
-                text-decoration: none;
-
-                &:hover {
-                    color: $navbar-color-hover;
-                }
-            }
-            
+            padding-left: 1rem;
+            padding-right: 1rem;
             &.active {
-                @if ($navbar-text-color == #333) {
-                    font-weight: bolder;
-                    text-decoration: underline;
-                } @else {
-                    font-weight: normal;
-                }
+                color: $navbar-color-hover;
+                font-weight: bolder;
+            }
+            &:hover {
+                color: $navbar-color-hover;
+            }
+            a {
+                text-decoration: none;
+            }
+            &.productos-link {
+                color: blue;
+            }
+            &.clientes-link {
+                color: orange;
+            }
+            &.sobre-nosotros-link {
+                color: pink;
+            }
+            &.espaciado {
+                margin-left: auto;
             }
         }
     }
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 figure.card {
-    width: calc-card-width(2);
+    border: $border-width #{$border-style} $border-color;
+    border-radius: $border-radius;
+    padding: 1rem;
     box-sizing: border-box;
-    @include apply-border();
-    padding: $card-padding;
-
+    width: 100%;
+    margin-bottom: 1rem;
     img {
-        border-radius: $border-radius $border-radius 0 0;
+        border-radius: 2*$border-radius;
         width: 100%;
-        height: 180px; 
-        object-fit: cover;
     }
-
     figcaption {
         font-size: 0.8rem;
+        margin:0.5rem;
         text-align: center;
-        padding: 0.5rem 0;
-        border: $border-width $border-style $border-color;
-        border-radius: $btn-border-radius;
-        margin: $card-padding;
-
-        .btn {
-            display: block; 
-            width: fit-content;
-            margin: 0.5rem auto; 
-            padding: 0.3rem 0.8rem;
-            text-shadow: 0 0 1px #00000080;
+        img {
+            width: 1.5rem;
+            height: 1.5rem;
+            vertical-align: middle;
         }
-
-        p {
-            display: block;
-            margin-top: 0.5rem;
-            font-size: 0.75rem;
-            font-weight: normal;
-            text-align: left;
-            padding: 0 0.5rem; 
+        a {
+            color: black;
+            text-decoration: none;
+            border: 2px solid black;
+            padding: 0 0.5rem 0 0;
+            border-radius: 1.5rem;
+            display: inline-block;
+            font-weight: bold;
         }
     }
-
-    @for $i from 1 through length($card-backgrounds) {
-        @debug "Aplicando estilo a la tarjeta #{$i}";
-
-        &:nth-of-type(#{$i}) {
-            $color-key: "card-#{$i}";
-            background-color: map-get($card-backgrounds, $color-key);
-        }
+    //Sistema de maquetación
+    //Les doy un tamaño y un borde para distinguirlos
+    // Número de columnas para el sistema de maquetación
+    $num_elementos: 4;
+    //Función que devuelve la anchura correspondiente al elemento
+    @function anchura_col($i) {
+    @return (100 / $num_elementos)*$i ;
     }
-    
-    $max-cards: 4;
-    $j: 1;
-    @while $j < $max-cards {
-        $j: $j + 1;
+
+    //Bucle para generar las clases
+    @for $i from 1 through $num_elementos {
+    .row > .col-#{$i} {
+        padding: 1rem;
+        width: #{anchura_col($i)}+ "%";
     }
-    @if ($border-radius <= 0) {
-        @error "La variable $border-radius debe ser mayor que 0.";
+    }
+
+    // Colores de fondo para cada tarjeta
+    &:nth-of-type(1) {
+        background-color: lightgreen;
+    }
+    &:nth-of-type(2) {
+        background-color: lightblue;
+    }
+    &:nth-of-type(3) {
+        background-color: orange;
+    }
+    &:nth-of-type(4) {
+        background-color: pink;
     }
 }
 
+// --- Media Queries para Responsividad ---
+@media (min-width: 768px) {
+    nav ul {
+        flex-wrap: nowrap;
+    }
+    figure.card {
+        width: calc(50% - 0.5rem);
+    }
+}
+
+@media (min-width: 1200px) {
+    figure.card {
+        width: calc(25% - 0.75rem);
+    }
+}
+
+@media (max-width: 767px) {
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
 
 // --- Estilos para Botones ---
+//Colores de base para botones
+$color-error: #FF0000;
+$color-warning: rgb(239, 241, 120);
+$color-accepted: rgb(55, 138, 0);
+$color-normal: rgb(0, 110, 255);
+$color-shadow: #888;
+
+//Valor del radio para redondear los botones
+$btn-border-radius: 0.4rem;
+
+//Mapa del que cogeremos los nombres y los valores de los colores
+$btn-colors: ("error" : $color-error,
+    "warning" : $color-warning,
+    "accepted" : $color-accepted,
+    "normal" : $color-normal);
+
+//Elemento botón general
 .btn {
     display: inline-block;
     text-align: center;
     text-decoration: none;
     border-radius: $btn-border-radius;
-    
+    padding: 0.5rem;
+    //Estilo para el efecto de cuando pase el ratón por encima
     &:hover {
-        box-shadow: $btn-border-radius/2 $btn-border-radius/2 #888;
+        box-shadow: $btn-border-radius/2 $btn-border-radius/2 $color-shadow;
     }
-    
+    //Estilo al hacer click en el boton
     &:active {
         background-color: orange;
         color: white;
     }
 }
-
-@each $name, $color in $theme-colors {
-    .btn-#{$name} {
-        background-color: $color;
-                @if (lightness($color) < 50) {
+//Clase adicional que le da color
+@each $k,
+$v in $btn-colors {
+    .btn-#{$k} {
+        background-color: $v;
+        @if (lightness($v) < 50) {
             color: white;
-        }
-
-        nav &.btn {
-            color: white;
-            font-size: 0.8rem;
-            padding: 0.3rem 0.6rem;
         }
     }
 }

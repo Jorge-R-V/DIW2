@@ -1,11 +1,9 @@
-/* ==========================================================================
-   CÓDIGO SCSS COMPLETO Y DEFINITIVO (Botón Formulario a la Derecha)
-   ========================================================================== */
 $color-blue-dark: #1D3243;
 $color-orange: #C28B5E;
 $color-grey-text: #60737C;
 $color-bg-light: #F6F6F6;
 $color-white: #ffffff;
+$orange-color: #d86838;
 
 * {
   box-sizing: border-box;
@@ -58,18 +56,32 @@ h1, h2, h3, h4 {
   transition: all 0.3s ease;
 
   &.primary {
-    background-color: $color-orange;
+    background-color: $orange-color;
     color: $color-white;
-    border: 2px solid $color-orange;
-    &:hover { background-color: darken($color-orange, 10%); border-color: darken($color-orange, 10%); }
+    border: 2px solid $orange-color;
+    margin-left: 20px;
+    &:hover { background-color: darken($orange-color, 10%); border-color: darken($orange-color, 10%); }
   }
 
   &.secondary {
-    background-color: transparent;
-    color: $color-orange;
+    background-color: $color-orange;
+    color: #333;
     border: 2px solid $color-orange;
     margin-left: 10px;
-    &:hover { background-color: $color-orange; color: $color-white; }
+    &:hover {
+      background-color: darken($color-orange, 10%);
+      border-color: darken($color-orange, 10%);
+      color: #333;
+    }
+  }
+
+  &.btn-dark-text {
+    color: #333; /* Color de texto oscuro */
+    background-color: $color-orange; /* Cambiamos el color de fondo */
+    border-color: $color-orange; /* Igualamos el color del borde */
+    padding: 16px 32px; /* Lo hacemos un poco más grande */
+    font-size: 14px; /* Aumentamos ligeramente la fuente */
+    border-radius: 6px; /* Aumentamos el redondeo de los bordes */
   }
 }
 
@@ -78,7 +90,7 @@ h1, h2, h3, h4 {
    ========================================================================== */
 .hero {
   background-color: $color-blue-dark;
-  background-image: url('assets/img/hero-background.jpg'); 
+  background-image: url('assets/img/header-background.jpg'); 
   background-size: cover;
   background-position: center;
   color: $color-white;
@@ -87,32 +99,34 @@ h1, h2, h3, h4 {
   display: flex;
   flex-direction: column;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(29, 50, 67, 0.85); 
-    z-index: 0;
-  }
-
   > * { z-index: 1; position: relative; }
 
   /* Barra Superior */
   .top-bar {
-    background-color: rgba(0,0,0,0.2);
+    background-color: $color-blue-dark;
     padding: 10px 10%;
     font-size: 12px;
     
     .top-bar-content {
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
       align-items: center;
       gap: 20px;
+
+      .top-bar-right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
       
       a { color: rgba(255,255,255,0.8); }
       .language-switcher {
-        a { margin: 0 5px; opacity: 0.6; }
-        a:first-child { opacity: 1; color: $color-orange; font-weight: bold; }
+        a { 
+          margin: 0 5px;
+          &:hover { color: $color-orange; }
+        }
+        /* El idioma activo se mantiene naranja y en negrita */
+        a:first-child { color: $color-white; font-weight: bold; }
       }
     }
   }
@@ -148,17 +162,24 @@ h1, h2, h3, h4 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 600px;
+    max-width: 40%;
     margin-left: 10%;
     
+    .hero-subtitle {
+      margin-bottom: 25px;
+    }
+
     .highlight {
       display: block;
-      font-size: 12px;
+      font-size: 16px;
+      line-height: 1.5;
       letter-spacing: 2px;
       text-transform: uppercase;
-      font-weight: bold;
-      margin-bottom: 15px;
       opacity: 0.9;
+
+      .italic-part {
+        font-style: italic;
+      }
     }
 
     h1 {
@@ -190,7 +211,7 @@ h1, h2, h3, h4 {
   article {
     flex: 1;
     h2 { font-size: 36px; margin-bottom: 25px; }
-    p { color: $color-grey-text; margin-bottom: 25px; font-size: 16px; }
+    p { color: $color-grey-text; margin-bottom: 25px; font-size: 17px; }
     .btn { margin-top: 10px; }
   }
 
@@ -209,7 +230,7 @@ h1, h2, h3, h4 {
    ========================================================================== */
 .services {
   background-color: $color-blue-dark;
-  background-image: url('assets/img/service-background.jpg');
+  background-image: url('assets/img/techo-cristal.jpg');
   background-size: cover;
   background-position: center;
   padding: 120px 10%;
@@ -303,11 +324,13 @@ h1, h2, h3, h4 {
       }
 
       footer {
+        display: inline;
         color: $color-orange;
         font-weight: bold;
         text-transform: uppercase;
         font-size: 12px;
         letter-spacing: 1px;
+        font-style: italic;
       }
     }
   }
@@ -386,9 +409,19 @@ h1, h2, h3, h4 {
 
     button {
       grid-column: 1 / -1;
-      /** CORRECCIÓN APLICADA AQUÍ: margin-left: auto; para forzar alineación a la derecha **/
-      margin-left: auto; margin-top: 20px;
-      min-width: 200px;
+      justify-self: end; /* Alinea el botón a la derecha dentro de la celda del grid */ margin-top: 20px;
+      min-width: 140px; /* Hacemos el botón aún menos ancho */
+      /* Estilos para el botón del formulario */
+      background-color: $color-bg-light; /* Color de fondo de la sección */
+      border: 2px solid #000; /* Borde negro */
+      color: $color-blue-dark; /* Color de texto oscuro para contraste */
+      border-radius: 16px; /* Aumentamos más el redondeo de los bordes */
+      padding: 10px 24px; /* Reducimos el padding para hacerlo más pequeño */
+
+      &:hover {
+        background-color: darken($color-bg-light, 5%);
+        border-color: #000; /* Mantenemos el borde negro en el hover */
+      }
     }
   }
 }
@@ -450,38 +483,28 @@ footer {
     &:hover { color: $color-orange; text-decoration: none; }
   }
 
-  /* 1. Arreglo columna "Info" */
-  .footer-info {
-    &::before {
-      content: "Información";
-      display: block;
-      color: $color-white;
-      font-family: 'Georgia', serif;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 25px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      padding-bottom: 10px;
-      width: fit-content;
-    }
-  }
-
+  /* 1. Columna "Info" */
   /* 2. Navegación */
   .footer-nav ul { padding: 0; margin: 0; }
 
   /* 3. Logo */
   .footer-logo {
-    h1 {
-      color: $color-white;
-      font-size: 24px;
+    .footer-logo-img {
+      height: 40px; /* Ajustamos la altura del logo */
       margin-bottom: 15px;
+      filter: brightness(0) invert(1); /* Lo ponemos en color blanco */
     }
+
     .social-media a {
       display: inline-block;
       margin-right: 15px;
       color: $color-orange;
       font-size: 14px;
+
+      img {
+        height: 24px;
+        width: 24px;
+      }
     }
   }
 
@@ -512,7 +535,7 @@ footer {
       letter-spacing: 0.5px; 
       text-transform: uppercase;
       font-size: 12px;
-      border-radius: 4px;
+      border-radius: 16px;
       transition: all 0.3s ease;
       cursor: pointer;
       

@@ -2,6 +2,7 @@ $color-blue-dark: #1D3243;
 $color-orange: #C28B5E;
 $color-grey-text: #60737C;
 $color-bg-light: #F6F6F6;
+$color-bg-blue-light: #c5d9e8; // Tono de azul más oscuro
 $color-white: #ffffff;
 $orange-color: #d86838;
 
@@ -86,8 +87,8 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   2. HEADER (HERO)
-   ========================================================================== */
+   2. HEADER (HERO)
+   ========================================================================== */
 .hero {
   background-color: $color-blue-dark;
   background-image: url('assets/img/header-background.jpg'); 
@@ -199,8 +200,8 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   3. SECCIÓN ABOUT (Klaus Maziul)
-   ========================================================================== */
+   3. SECCIÓN ABOUT (Klaus Maziul)
+   ========================================================================== */
 .about {
   padding: 100px 10%;
   background-color: $color-bg-light;
@@ -226,8 +227,8 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   4. SECCIÓN SERVICIOS (Banner Azul)
-   ========================================================================== */
+   4. SECCIÓN SERVICIOS (Banner Azul)
+   ========================================================================== */
 .services {
   background-color: $color-blue-dark;
   background-image: url('assets/img/techo-cristal.jpg');
@@ -252,54 +253,111 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   5. SECCIÓN EQUIPO
-   ========================================================================== */
+   5. SECCIÓN EQUIPO (NUEVO LAYOUT)
+   ========================================================================== */
 .team {
   padding: 100px 10%;
-  background-color: $color-white;
-  text-align: center;
+  background-color: $color-bg-light; // Fondo gris claro
+  text-align: left; // Alineación izquierda
 
-  h3 {
-    max-width: 800px;
-    margin: 0 auto 60px auto;
-    font-size: 32px;
+  .team-layout {
+    display: flex;
+    gap: 60px;
   }
 
-  .team-members {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
+  /* Columna izquierda */
+  .team-intro {
+    flex: 1;
+    max-width: 350px;
+    padding-top: 100px; // Alineación vertical con la descripción
 
-    article {
-      flex: 1;
-      max-width: 300px;
+    h3 {
+      font-size: 38px;
+      line-height: 1.1;
+      margin-bottom: 25px;
+    }
+    .highlight-text {
+      color: $color-orange;
+    }
 
-      img {
-        width: 180px;
-        height: 180px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin: 0 auto 25px auto;
-        border: 4px solid $color-bg-light;
+    .team-subtitle {
+      text-transform: uppercase;
+      font-size: 14px;
+      color: $color-grey-text;
+      letter-spacing: 1px;
+      margin-bottom: 40px;
+    }
+  }
+
+  /* Columna derecha (Tarjetas) */
+  .team-members-container {
+    flex: 2;
+    background-color: $color-bg-blue-light; // Fondo azul claro para el contenedor de tarjetas
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+
+    
+    .team-description {
+      color: #000;
+      font-size: 16px;
+      margin-bottom: 40px;
+    }
+
+    .team-members {
+      display: flex;
+      justify-content: space-between;
+      gap: 60px;
+
+      article {
+        flex: 1;
+        background-color: $color-bg-blue-light;
+        background-color: transparent; /* Quitamos el fondo */
+        text-align: center;
+        padding: 0; // Se elimina el padding para que la imagen sea protagonista
+
+        img {
+          width: 100%;
+          border-radius: 4px;
+          object-fit: contain;
+          margin-bottom: 15px;
+          border: none; // Se quita el borde
+        }
+
+        .lawyer-info {
+          background-color: $color-bg-blue-light;
+          background-color: transparent; /* Quitamos el fondo */
+          padding: 20px;
+          border-radius: 0 0 4px 4px;
+        }
+
+        h4 {
+          margin-bottom: 5px;
+          font-size: 18px;
+          color: $color-blue-dark;
+        }
+
+        p {
+          color: $color-grey-text;
+          font-size: 14px;
+        }
       }
-
-      h4 { margin-bottom: 10px; font-size: 20px; }
-      p { color: $color-grey-text; font-size: 15px; }
     }
   }
 }
 
+
 /* ==========================================================================
-   6. SECCIÓN TESTIMONIOS
-   ========================================================================== */
+   6. SECCIÓN TESTIMONIOS (MODIFICADA)
+   ========================================================================== */
 .testimonials {
-  background-color: $color-blue-dark;
+  background-color: $color-blue-dark; // Fondo azul oscuro
   padding: 100px 10%;
   color: $color-white;
 
   h3 {
     color: $color-white;
-    text-align: center;
+    text-align: left;
     margin-bottom: 60px;
     font-size: 32px;
   }
@@ -310,9 +368,10 @@ h1, h2, h3, h4 {
 
     blockquote {
       flex: 1;
-      background: rgba(255,255,255,0.05);
+      background: $color-white;
       padding: 40px;
-      border-left: 4px solid $color-orange;
+      border-radius: 4px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
       position: relative;
       
       p {
@@ -320,25 +379,27 @@ h1, h2, h3, h4 {
         font-size: 16px;
         margin-bottom: 25px;
         line-height: 1.6;
-        opacity: 0.9;
+        color: #333;
+        opacity: 1;
       }
 
       footer {
-        display: inline;
-        color: $color-orange;
+        display: block;
+        color: $color-blue-dark;
         font-weight: bold;
-        text-transform: uppercase;
-        font-size: 12px;
-        letter-spacing: 1px;
-        font-style: italic;
+        text-transform: none;
+        font-size: 14px;
+        letter-spacing: 0;
+        font-style: normal;
+        margin-top: 15px;
       }
     }
   }
 }
 
 /* ==========================================================================
-   7. FORMULARIO DE CONTACTO
-   ========================================================================== */
+   7. FORMULARIO DE CONTACTO
+   ========================================================================== */
 .contact-form {
   padding: 100px 10%;
   background-color: $color-bg-light;
@@ -348,13 +409,18 @@ h1, h2, h3, h4 {
     font-size: 36px; 
     margin-bottom: 15px; 
     text-align: left; 
+    font-weight: normal; /* Quitamos la negrita */
   }
   p { 
     color: $color-grey-text; 
     margin-bottom: 50px; 
-    max-width: 600px; 
+    max-width: 800px; 
     margin: 0 0 50px 0;
     text-align: left; 
+
+    span {
+      display: block; /* Hace que cada span ocupe su propia línea */
+    }
   }
   
   /* Estilo para el "highlight" PROGRAME UNA REUNIÓN */
@@ -427,28 +493,45 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   8. UBICACIÓN (MAPA)
-   ========================================================================== */
+   8. UBICACIÓN (MAPA)
+   ========================================================================= */
 .location {
   padding: 80px 10%;
-  text-align: center; 
   background-color: $color-white;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+
+  .location-text {
+    flex: 1;
+  }
   
-  h3 { font-size: 32px; }
-  p { color: $color-grey-text; margin-bottom: 40px; }
+  h3 { 
+    font-size: 32px; 
+    margin-bottom: 20px; /* Añadimos espacio debajo del título */
+  }
+  p { 
+    color: $color-grey-text; 
+    margin-bottom: 0; 
+  }
 
   .map {
+    flex: 1.2;
     height: 400px;
     border-radius: 8px;
     overflow: hidden;
     background: #eee;
-    iframe { width: 100%; height: 100%; border: 0; }
+    iframe { 
+      width: 100%; 
+      height: 100%; 
+      border: none; 
+    }
   }
 }
 
 /* ==========================================================================
-   9. FOOTER (CORRECCIÓN FINAL BOTÓN NEWSLETTER: Inline y Pegado con Fondo Oscuro)
-   ========================================================================== */
+   9. FOOTER (CORRECCIÓN FINAL BOTÓN NEWSLETTER: Inline y Pegado con Fondo Oscuro)
+   ========================================================================== */
 footer {
   background-color: $color-blue-dark;
   color: $color-white;
@@ -528,7 +611,7 @@ footer {
     button {
       /* Estilos para el botón "Enviar" del newsletter */
       background-color: $color-blue-dark;
-      color: $color-orange;
+      color: $color-white;
       border: 1px solid $color-white;
       padding: 8px 20px;
       font-weight: 600; 
@@ -548,29 +631,96 @@ footer {
 }
 
 /* ==========================================================================
-   10. RESPONSIVE (MÓVIL)
-   ========================================================================== */
+   10. RESPONSIVE (MÓVIL)
+   ========================================================================== */
 @media (max-width: 900px) {
-  .hero nav { flex-direction: column; gap: 20px; }
-  
-  .about, .team-members, .testimonials-container, footer {
+  /* Ajustes generales de padding y fuentes */
+  h1 { font-size: 38px; }
+  h2, h3 { font-size: 30px; }
+  .hero, .about, .services, .team, .testimonials, .contact-form, .location {
+    padding: 60px 20px;
+  }
+
+  /* --- Header y Hero --- */
+  .top-bar-content {
     flex-direction: column;
+    gap: 10px;
+
+    .top-bar-right {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+
+  .hero nav { 
+    flex-direction: column; 
+    gap: 25px; 
+    .nav-links {
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+  }
+
+  .hero .hero-content {
+    max-width: 100%;
+    margin-left: 0;
+    text-align: center;
+    padding: 0 20px;
+  }
+  
+  .about, .location, .team-members, .testimonials-container, footer {
+    flex-direction: column; /* Apila los elementos */
+    gap: 40px; /* Añade espacio entre los elementos apilados */
   }
 
   .about aside { order: -1; margin-bottom: 30px; }
   
-  /* Resetear grid del formulario en móvil */
+  /* --- Formulario de Contacto --- */
   .contact-form form {
     grid-template-columns: 1fr;
     
-    /* En móvil, el botón debe ser de ancho completo y resetear el margin-left: auto; */
     button { 
-        width: 100%; 
-        margin-left: 0;
+      justify-self: stretch; /* Ocupa todo el ancho */
     }
   }
 
-  /* Newsletter en móvil: Se apila */
+  /* --- Sección Equipo --- */
+  .team .team-layout {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .team .team-intro {
+    padding-top: 0; /* Reseteamos el padding */
+    max-width: 100%;
+    text-align: center; /* Centramos el texto de introducción */
+    .btn {
+      margin: 0 auto; /* Centramos el botón */
+    }
+  }
+
+  .team .team-members-container {
+    padding: 20px;
+    .team-description {
+      text-align: center;
+    }
+  }
+
+  .team .team-members {
+    flex-direction: column;
+  }
+  
+  /* --- Testimonios --- */
+  .testimonials h3 {
+    text-align: center;
+  }
+  .testimonials .testimonials-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* --- Footer --- */
   .newsletter form {
     flex-direction: column; /* Apila verticalmente */
     text-align: left;
@@ -578,13 +728,17 @@ footer {
     input {
       width: 100%;
       /* Vuelve a redondear las cuatro esquinas */
-      border-radius: 4px 4px 0 0 !important;
-      margin-bottom: 0;
+      border-radius: 4px !important;
+      margin-bottom: 10px;
     }
     button {
       width: 100%;
       /* Redondea las esquinas inferiores */
-      border-radius: 0 0 4px 4px !important;
+      border-radius: 16px !important;
     }
+  }
+
+  footer > div {
+    text-align: center;
   }
 }

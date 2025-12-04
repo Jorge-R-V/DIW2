@@ -28,7 +28,6 @@ ul {
   list-style: none;
 }
 
-/* Tipografía de Títulos (Serif) */
 h1, h2, h3, h4 {
   font-family: "Georgia", "Times New Roman", serif;
   color: #1D3243;
@@ -36,7 +35,7 @@ h1, h2, h3, h4 {
   line-height: 1.2;
 }
 
-/* --- BOTONES --- */
+/* BOTONES */
 .btn {
   display: inline-block;
   padding: 14px 28px;
@@ -71,17 +70,15 @@ h1, h2, h3, h4 {
   color: #333;
 }
 .btn.btn-dark-text {
-  color: #333; /* Color de texto oscuro */
-  background-color: #C28B5E; /* Cambiamos el color de fondo */
-  border-color: #C28B5E; /* Igualamos el color del borde */
-  padding: 16px 32px; /* Lo hacemos un poco más grande */
-  font-size: 14px; /* Aumentamos ligeramente la fuente */
-  border-radius: 6px; /* Aumentamos el redondeo de los bordes */
+  color: #333;
+  background-color: #C28B5E;
+  border-color: #C28B5E;
+  padding: 16px 32px;
+  font-size: 14px;
+  border-radius: 6px;
 }
 
-/* ==========================================================================
-   2. HEADER (HERO)
-   ========================================================================== */
+/* Cabecera */
 .hero {
   background-color: #1D3243;
   background-image: url("assets/img/header-background.jpg");
@@ -92,9 +89,6 @@ h1, h2, h3, h4 {
   min-height: 85vh;
   display: flex;
   flex-direction: column;
-  /* Barra Superior */
-  /* Navegación */
-  /* Texto Hero */
 }
 .hero > * {
   z-index: 1;
@@ -118,9 +112,6 @@ h1, h2, h3, h4 {
 }
 .hero .top-bar .top-bar-content a {
   color: rgba(255, 255, 255, 0.8);
-}
-.hero .top-bar .top-bar-content .language-switcher {
-  /* El idioma activo se mantiene naranja y en negrita */
 }
 .hero .top-bar .top-bar-content .language-switcher a {
   margin: 0 5px;
@@ -190,9 +181,7 @@ h1, h2, h3, h4 {
   line-height: 1.6;
 }
 
-/* ==========================================================================
-   3. SECCIÓN ABOUT (Klaus Maziul)
-   ========================================================================== */
+/* Opiniones */
 .about {
   padding: 100px 10%;
   background-color: #F6F6F6;
@@ -224,9 +213,7 @@ h1, h2, h3, h4 {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* ==========================================================================
-   4. SECCIÓN SERVICIOS (Banner Azul)
-   ========================================================================== */
+/* Servicios */
 .services {
   background-color: #1D3243;
   background-image: url("assets/img/techo-cristal.jpg");
@@ -248,15 +235,11 @@ h1, h2, h3, h4 {
   opacity: 0.9;
 }
 
-/* ==========================================================================
-   5. SECCIÓN EQUIPO (NUEVO LAYOUT)
-   ========================================================================== */
+/*Fotos abogados*/
 .team {
   padding: 100px 10%;
   background-color: #F6F6F6;
   text-align: left;
-  /* Columna izquierda */
-  /* Columna derecha (Tarjetas) */
 }
 .team .team-layout {
   display: flex;
@@ -302,7 +285,7 @@ h1, h2, h3, h4 {
 .team .team-members-container .team-members article {
   flex: 1;
   background-color: #c5d9e8;
-  background-color: transparent; /* Quitamos el fondo */
+  background-color: transparent;
   text-align: center;
   padding: 0;
 }
@@ -316,7 +299,7 @@ h1, h2, h3, h4 {
 }
 .team .team-members-container .team-members article .lawyer-info {
   background-color: #c5d9e8;
-  background-color: transparent; /* Quitamos el fondo */
+  background-color: transparent;
   padding: 20px;
   border-radius: 0 0 4px 4px;
 }
@@ -330,9 +313,7 @@ h1, h2, h3, h4 {
   font-size: 14px;
 }
 
-/* ==========================================================================
-   6. SECCIÓN TESTIMONIOS (MODIFICADA)
-   ========================================================================== */
+/* Testimonios */
 .testimonials {
   background-color: #1D3243;
   padding: 100px 10%;
@@ -375,20 +356,16 @@ h1, h2, h3, h4 {
   margin-top: 15px;
 }
 
-/* ==========================================================================
-   7. FORMULARIO DE CONTACTO
-   ========================================================================== */
+/*Formulario*/
 .contact-form {
   padding: 100px 10%;
   background-color: #F6F6F6;
-  /* Alineación a la izquierda del encabezado */
-  /* Estilo para el "highlight" PROGRAME UNA REUNIÓN */
 }
 .contact-form h3 {
   font-size: 36px;
   margin-bottom: 15px;
   text-align: left;
-  font-weight: normal; /* Quitamos la negrita */
+  font-weight: normal;
 }
 .contact-form p {
   color: #60737C;
@@ -398,7 +375,7 @@ h1, h2, h3, h4 {
   text-align: left;
 }
 .contact-form p span {
-  display: block; /* Hace que cada span ocupe su propia línea */
+  display: block;
 }
 .contact-form .highlight {
   display: block;
@@ -419,7 +396,6 @@ h1, h2, h3, h4 {
        column-gap: 30px;
   row-gap: 20px;
   text-align: left;
-  /* Ocultar etiquetas (para usar placeholder) */
 }
 .contact-form form label {
   display: none;
@@ -453,24 +429,21 @@ h1, h2, h3, h4 {
 }
 .contact-form form button {
   grid-column: 1/-1;
-  justify-self: end; /* Alinea el botón a la derecha dentro de la celda del grid */
+  justify-self: end;
   margin-top: 20px;
-  min-width: 140px; /* Hacemos el botón aún menos ancho */
-  /* Estilos para el botón del formulario */
-  background-color: #F6F6F6; /* Color de fondo de la sección */
-  border: 2px solid #000; /* Borde negro */
-  color: #1D3243; /* Color de texto oscuro para contraste */
-  border-radius: 16px; /* Aumentamos más el redondeo de los bordes */
-  padding: 10px 24px; /* Reducimos el padding para hacerlo más pequeño */
+  min-width: 140px;
+  background-color: #F6F6F6;
+  border: 2px solid #000;
+  color: #1D3243;
+  border-radius: 16px;
+  padding: 10px 24px;
 }
 .contact-form form button:hover {
   background-color: rgb(233.25, 233.25, 233.25);
-  border-color: #000; /* Mantenemos el borde negro en el hover */
+  border-color: #000;
 }
 
-/* ==========================================================================
-   8. UBICACIÓN (MAPA)
-   ========================================================================= */
+/*Mapa*/
 .location {
   padding: 80px 10%;
   background-color: #ffffff;
@@ -483,7 +456,7 @@ h1, h2, h3, h4 {
 }
 .location h3 {
   font-size: 32px;
-  margin-bottom: 20px; /* Añadimos espacio debajo del título */
+  margin-bottom: 20px;
 }
 .location p {
   color: #60737C;
@@ -502,9 +475,6 @@ h1, h2, h3, h4 {
   border: none;
 }
 
-/* ==========================================================================
-   9. FOOTER (CORRECCIÓN FINAL BOTÓN NEWSLETTER: Inline y Pegado con Fondo Oscuro)
-   ========================================================================== */
 footer {
   background-color: #1D3243;
   color: #ffffff;
@@ -514,9 +484,7 @@ footer {
   flex-wrap: wrap;
   gap: 40px;
   /* 1. Columna "Info" */
-  /* 2. Navegación */
-  /* 3. Logo */
-  /* 4. Newsletter (CORRECCIÓN APLICADA AQUÍ) */
+  /* Logo */
 }
 footer > div {
   flex: 1;
@@ -547,9 +515,9 @@ footer .footer-nav ul {
   margin: 0;
 }
 footer .footer-logo .footer-logo-img {
-  height: 40px; /* Ajustamos la altura del logo */
+  height: 40px;
   margin-bottom: 15px;
-  filter: brightness(0) invert(1); /* Lo ponemos en color blanco */
+  filter: brightness(0) invert(1);
 }
 footer .footer-logo .social-media a {
   display: inline-block;
@@ -563,21 +531,20 @@ footer .footer-logo .social-media a img {
 }
 footer .newsletter form {
   display: flex;
-  flex-direction: column; /* Apila los elementos verticalmente */
-  align-items: flex-end; /* Alinea el botón a la derecha */
+  flex-direction: column;
+  align-items: flex-end;
   margin-top: 10px;
 }
 footer .newsletter form input {
-  width: 100%; /* Ocupa todo el ancho disponible */
+  width: 100%;
   padding: 10px;
   border: none;
-  border-radius: 4px; /* Redondea todas las esquinas */
+  border-radius: 4px;
   height: 40px;
   font-size: 14px;
-  margin-bottom: 10px; /* Espacio entre el input y el botón */
+  margin-bottom: 10px;
 }
 footer .newsletter form button {
-  /* Estilos para el botón "Enviar" del newsletter */
   background-color: #1D3243;
   color: #ffffff;
   border: 1px solid #ffffff;
@@ -595,11 +562,8 @@ footer .newsletter form button:hover {
   color: #ffffff;
 }
 
-/* ==========================================================================
-   10. RESPONSIVE (MÓVIL)
-   ========================================================================== */
+/* Responsibilidad movil*/
 @media (max-width: 900px) {
-  /* Ajustes generales de padding y fuentes */
   h1 {
     font-size: 38px;
   }
@@ -609,7 +573,6 @@ footer .newsletter form button:hover {
   .hero, .about, .services, .team, .testimonials, .contact-form, .location {
     padding: 60px 20px;
   }
-  /* --- Header y Hero --- */
   .top-bar-content {
     flex-direction: column;
     gap: 10px;
@@ -634,8 +597,8 @@ footer .newsletter form button:hover {
     padding: 0 20px;
   }
   .about, .location, .team-members, .testimonials-container, footer {
-    flex-direction: column; /* Apila los elementos */
-    gap: 40px; /* Añade espacio entre los elementos apilados */
+    flex-direction: column;
+    gap: 40px;
   }
   .about aside {
     order: -1;
@@ -646,7 +609,7 @@ footer .newsletter form button:hover {
     grid-template-columns: 1fr;
   }
   .contact-form form button {
-    justify-self: stretch; /* Ocupa todo el ancho */
+    justify-self: stretch;
   }
   /* --- Sección Equipo --- */
   .team .team-layout {
@@ -654,12 +617,12 @@ footer .newsletter form button:hover {
     gap: 40px;
   }
   .team .team-intro {
-    padding-top: 0; /* Reseteamos el padding */
+    padding-top: 0;
     max-width: 100%;
-    text-align: center; /* Centramos el texto de introducción */
+    text-align: center;
   }
   .team .team-intro .btn {
-    margin: 0 auto; /* Centramos el botón */
+    margin: 0 auto;
   }
   .team .team-members-container {
     padding: 20px;
@@ -680,18 +643,16 @@ footer .newsletter form button:hover {
   }
   /* --- Footer --- */
   .newsletter form {
-    flex-direction: column; /* Apila verticalmente */
+    flex-direction: column;
     text-align: left;
   }
   .newsletter form input {
     width: 100%;
-    /* Vuelve a redondear las cuatro esquinas */
     border-radius: 4px !important;
     margin-bottom: 10px;
   }
   .newsletter form button {
     width: 100%;
-    /* Redondea las esquinas inferiores */
     border-radius: 16px !important;
   }
   footer > div {

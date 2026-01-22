@@ -1,5 +1,0 @@
-{
-    "fies.associations": {
-        "*.css": "tailwindcss"
-    }
-}

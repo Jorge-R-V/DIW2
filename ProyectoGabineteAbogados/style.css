@@ -55,8 +55,8 @@ h1, h2, h3, h4 {
   margin-left: 20px;
 }
 .btn.primary:hover {
-  background-color: rgb(184.7857142857, 80.7857142857, 36.2142857143);
-  border-color: rgb(184.7857142857, 80.7857142857, 36.2142857143);
+  background-color: #b95124;
+  border-color: #b95124;
 }
 .btn.secondary {
   background-color: #C28B5E;
@@ -65,8 +65,8 @@ h1, h2, h3, h4 {
   margin-left: 10px;
 }
 .btn.secondary:hover {
-  background-color: rgb(171.8783783784, 113.1621621622, 65.1216216216);
-  border-color: rgb(171.8783783784, 113.1621621622, 65.1216216216);
+  background-color: #ac7141;
+  border-color: #ac7141;
   color: #333;
 }
 .btn.btn-dark-text {
@@ -439,7 +439,7 @@ h1, h2, h3, h4 {
   padding: 10px 24px;
 }
 .contact-form form button:hover {
-  background-color: rgb(233.25, 233.25, 233.25);
+  background-color: #e9e9e9;
   border-color: #000;
 }
 
@@ -648,12 +648,12 @@ footer .newsletter form button:hover {
   }
   .newsletter form input {
     width: 100%;
-    border-radius: 4px !important;
+    border-radius: 4px;
     margin-bottom: 10px;
   }
   .newsletter form button {
     width: 100%;
-    border-radius: 16px !important;
+    border-radius: 16px;
   }
   footer > div {
     text-align: center;

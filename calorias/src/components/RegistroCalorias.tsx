@@ -24,54 +24,45 @@ export default function RegistroCalorias({
     
     return (
         <div className="space-y-10">
-            <h2 className="text-4xl font-black text-white text-center tracking-tight">
-                Dashboard Nutricional
-            </h2>
-
-            <div className="flex flex-col items-center md:flex-row md:justify-between gap-5 bg-gray-900/50 p-8 rounded-3xl backdrop-blur-sm border border-gray-700 shadow-2xl">
-                <div className="text-white font-bold grid grid-cols-1 gap-1 text-center">
-                    <span className="font-black text-6xl text-lime-400">{caloriesConsumed}</span>
-                    <span className="text-xs uppercase tracking-widest text-slate-400">Consumidas</span>
-                </div>
-                <div className="text-white font-bold grid grid-cols-1 gap-1 text-center border-x border-gray-700 px-10">
-                    <span className="font-black text-6xl text-orange-400">{caloriesBurned}</span>
-                    <span className="text-xs uppercase tracking-widest text-slate-400">Quemadas</span>
-                </div>
-                <div className="text-white font-bold grid grid-cols-1 gap-1 text-center">
-                    <span className="font-black text-6xl text-sky-400">{netCalories}</span>
-                    <span className="text-xs uppercase tracking-widest text-slate-400">Balance</span>
-                </div>
+            <div className="text-center">
+                <h2 className="text-3xl font-black text-slate-800 tracking-tighter uppercase italic">
+                    Dashboard <span className="text-lime-500 not-italic">Nutricional</span>
+                </h2>
+                <div className="h-1 w-12 bg-lime-500 mx-auto mt-4 rounded-full"></div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                <div className="bg-gray-900/40 p-4 rounded-2xl border border-gray-800 text-center hover:border-yellow-500/50 transition-colors">
-                    <span className="block font-black text-3xl text-yellow-400">{totalFat} g</span>
-                    <span className="text-[10px] uppercase font-bold text-slate-500">Grasas</span>
-                </div>
-                
-                <div className="bg-gray-900/40 p-4 rounded-2xl border border-gray-800 text-center hover:border-purple-500/50 transition-colors">
-                    <span className="block font-black text-3xl text-purple-400">{totalSugar} g</span>
-                    <span className="text-[10px] uppercase font-bold text-slate-500">Azúcares</span>
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {[
+                    {label: 'Consumidas', value: caloriesConsumed, color: 'text-lime-500', bg: 'bg-lime-50/50'},
+                    {label: 'Quemadas', value: caloriesBurned, color: 'text-orange-500', bg: 'bg-orange-50/50'},
+                    {label: 'Balance', value: netCalories, color: 'text-sky-500', bg: 'bg-sky-50/50'}
+                ].map(stat => (
+                    <div key={stat.label} className={`p-8 rounded-[2.5rem] bg-white shadow-xl shadow-slate-200/50 border border-white text-center transition-all hover:scale-[1.02]`}>
+                        <span className={`block font-black text-6xl tracking-tighter ${stat.color}`}>{stat.value}</span>
+                        <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-slate-400 mt-2 block">{stat.label}</span>
+                    </div>
+                ))}
+            </div>
 
-                <div className="bg-gray-900/40 p-4 rounded-2xl border border-gray-800 text-center hover:border-red-500/50 transition-colors">
-                    <span className="block font-black text-3xl text-red-400">{totalProtein} g</span>
-                    <span className="text-[10px] uppercase font-bold text-slate-500">Proteína</span>
-                </div>
-
-                <div className="bg-gray-900/40 p-4 rounded-2xl border border-gray-800 text-center hover:border-blue-500/50 transition-colors">
-                    <span className="block font-black text-3xl text-blue-400">{totalCarbs} g</span>
-                    <span className="text-[10px] uppercase font-bold text-slate-500">Carbos</span>
-                </div>
-
-                <div className="bg-gray-900/40 p-4 rounded-2xl border border-gray-800 text-center hover:border-emerald-500/50 transition-colors">
-                    <span className="block font-black text-3xl text-emerald-400">{totalFiber} g</span>
-                    <span className="text-[10px] uppercase font-bold text-slate-500">Fibra</span>
-                </div>
-
-                <div className="bg-gray-900/40 p-4 rounded-2xl border border-gray-800 text-center hover:border-pink-500/50 transition-colors">
-                    <span className="block font-black text-3xl text-pink-400">{totalSodium} mg</span>
-                    <span className="text-[10px] uppercase font-bold text-slate-500">Sodio</span>
+            <div className="bg-slate-900/90 backdrop-blur-xl p-8 md:p-10 rounded-[3rem] shadow-2xl border border-slate-800">
+                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 mb-8 text-center">Desglose de Macronutrientes</p>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+                    {[
+                        {label: 'Grasas', value: totalFat, color: 'text-yellow-400', unit: 'g'},
+                        {label: 'Azúcares', value: totalSugar, color: 'text-purple-400', unit: 'g'},
+                        {label: 'Proteínas', value: totalProtein, color: 'text-red-400', unit: 'g'},
+                        {label: 'Carbos', value: totalCarbs, color: 'text-blue-400', unit: 'g'},
+                        {label: 'Fibra', value: totalFiber, color: 'text-emerald-400', unit: 'g'},
+                        {label: 'Sodio', value: totalSodium, color: 'text-pink-400', unit: 'mg'}
+                    ].map(nutrient => (
+                        <div key={nutrient.label} className="text-center group">
+                            <span className={`block font-black text-2xl mb-1 transition-transform group-hover:scale-110 ${nutrient.color}`}>
+                                {nutrient.value}
+                                <span className="text-[10px] ml-0.5 opacity-50">{nutrient.unit}</span>
+                            </span>
+                            <span className="text-[9px] uppercase font-bold tracking-widest text-slate-500">{nutrient.label}</span>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>

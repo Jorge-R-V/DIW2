@@ -25,10 +25,23 @@ const initialState : Activity = {
 
 export default function FormularioActividades({saveActivity, activeId, activities} : FormularioActividadesProps) {
 
-    const [activity, setActivity] = useState<Activity>(activeId ? 
-        activities.find( stateActivity => stateActivity.id === activeId)! : 
-        initialState
-    )
+    const [activity, setActivity] = useState<Activity>(() => {
+        if (activeId) {
+            return activities.find(stateActivity => stateActivity.id === activeId)!
+        }
+        
+        // Check for category in URL
+        const params = new URLSearchParams(window.location.search)
+        const categoryParam = params.get('category')
+        if (categoryParam && (categoryParam === '1' || categoryParam === '2')) {
+            return {
+                ...initialState,
+                category: +categoryParam
+            }
+        }
+        
+        return initialState
+    })
 
     const [baseNutrients, setBaseNutrients] = useState({
         calories: activity.calories / (activity.quantity || 1),
@@ -141,185 +154,148 @@ export default function FormularioActividades({saveActivity, activeId, activitie
 
     return (
         <form 
-            className="space-y-5 bg-white shadow p-10 rounded-lg"
+            className="space-y-8 bg-white/60 backdrop-blur-xl p-8 md:p-12 rounded-[2.5rem] border border-white shadow-2xl shadow-slate-200/50 transition-all hover:bg-white/80"
             onSubmit={handleSubmit}
         >
-            <div className="grid grid-cols-1 gap-3">
-                <label htmlFor="category" className="font-bold">Categoría:</label>
-                <select 
-                    className="border border-slate-300 p-2 rounded-lg w-full bg-white"
-                    id="category"
-                    value={activity.category}
-                    onChange={handleChange}
-                >
+            <div className="text-center mb-8">
+                <h2 className="text-3xl font-black tracking-tight text-slate-800">
+                    Registrar <span className="text-lime-500">Actividad</span>
+                </h2>
+                <p className="text-slate-400 text-sm mt-2">Dinos qué has comido o cuánto has entrenado hoy.</p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4">
+                <label htmlFor="category" className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-2">Categoría</label>
+                <div className="flex p-1 bg-slate-100 rounded-2xl">
                     {categories.map(category => (
-                        <option 
+                        <button
+                            type="button"
                             key={category.id}
-                            value={category.id}
+                            onClick={() => setActivity({...activity, category: category.id})}
+                            className={`flex-1 py-3 px-4 rounded-xl text-sm font-bold transition-all ${
+                                activity.category === category.id 
+                                ? 'bg-white text-slate-900 shadow-sm' 
+                                : 'text-slate-400 hover:text-slate-600'
+                            }`}
                         >
                             {category.name}
-                        </option>
+                        </button>
                     ))}
-                </select>
+                </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-3">
-                <label htmlFor="product-hint" className="font-bold flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-lime-600">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 10-4.773-4.773 3.375 3.375 0 004.774 4.774zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    {activity.category === 1 ? 'Selecciona un Alimento del catálogo:' : 'Selecciona un Ejercicio de la lista:'}
-                </label>
-                <select 
-                    id="product-hint"
-                    className="border border-slate-300 p-2 rounded-lg bg-lime-50"
-                    onChange={handleProductSelect}
-                    value=""
-                >
-                    <option value="" disabled>-- Haz clic para desplegar opciones --</option>
-                    {products
-                        .filter(p => p.category === activity.category)
-                        .map(p => (
-                            <option key={p.name} value={p.name}>{p.name}</option>
-                        ))
-                    }
-                    <option disabled>──────────</option>
-                    <option value="manual" className="font-bold text-lime-700">➕ Otros / Entrada Manual</option>
-                </select>
-                <p className="text-xs text-slate-500 italic">Al elegir "Otros", podrás escribir los datos manualmente debajo.</p>
-            </div>
-
-            <div className="grid grid-cols-1 gap-3">
-                <label htmlFor="name" className="font-bold">
-                    {activity.category === 1 ? 'Nombre del Alimento:' : 'Nombre del Ejercicio / Actividad:'}
-                </label>
-                <input 
-                    id="name"
-                    type="text"
-                    className="border border-slate-300 p-2 rounded-lg"
-                    placeholder={activity.category === 1 ? 'Ej. Manzana, Arroz... ' : 'Ej. Correr, Yoga...'}
-                    value={activity.name}
-                    onChange={handleChange}
-                />
-            </div>
-
-            <div className={`grid grid-cols-1 ${activity.category === 1 ? 'md:grid-cols-2' : ''} gap-5`}>
-                {activity.category === 1 && (
-                    <div className="grid grid-cols-1 gap-3">
-                        <label htmlFor="quantity" className="font-bold">Cantidad / Unidades:</label>
-                        <input 
-                            id="quantity"
-                            type="number"
-                            className="border border-slate-300 p-2 rounded-lg bg-lime-50 font-bold"
-                            placeholder="1, 2, 3..."
-                            value={activity.quantity}
-                            onChange={handleChange}
-                            min="1"
-                        />
+            <div key={activity.category} className="space-y-8 animate-switch">
+                <div className="grid grid-cols-1 gap-4">
+                    <label htmlFor="product-hint" className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-2">
+                        {activity.category === 1 ? 'Seleccionar Alimento' : 'Seleccionar Ejercicio'}
+                    </label>
+                    <div className="relative group">
+                        <select 
+                            id="product-hint"
+                            className="w-full bg-slate-50 border-none p-4 rounded-2xl text-slate-800 font-medium appearance-none focus:ring-2 focus:ring-lime-500/20 transition-all cursor-pointer"
+                            onChange={handleProductSelect}
+                            value=""
+                        >
+                            <option value="" disabled>-- Selecciona del catálogo --</option>
+                            {products
+                                .filter(p => p.category === activity.category)
+                                .map(p => (
+                                    <option key={p.name} value={p.name}>{p.name}</option>
+                                ))
+                            }
+                            <option disabled>──────────</option>
+                            <option value="manual">+ Otros / Entrada Manual</option>
+                        </select>
+                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+                                <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+                            </svg>
+                        </div>
                     </div>
-                )}
+                </div>
 
-                <div className="grid grid-cols-1 gap-3">
-                    <label htmlFor="calories" className="font-bold">
-                        {activity.category === 1 ? 'Calorías (base):' : 'Calorías Quemadas:'}
+                <div className="grid grid-cols-1 gap-4">
+                    <label htmlFor="name" className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-2">
+                        {activity.category === 1 ? 'Alimento' : 'Actividad'}
                     </label>
                     <input 
-                        id="calories"
-                        type="number"
-                        className="border border-slate-300 p-2 rounded-lg"
-                        placeholder={activity.category === 1 ? 'Ej. 100, 250' : 'Ej. 300, 500'}
-                        value={activity.calories}
+                        id="name"
+                        type="text"
+                        className="w-full bg-slate-50 border-none p-4 rounded-2xl text-slate-800 font-medium placeholder:text-slate-300 focus:ring-2 focus:ring-lime-500/20 transition-all"
+                        placeholder={activity.category === 1 ? 'Ej. Manzana, Tostadas...' : 'Ej. Correr, Natación...'}
+                        value={activity.name}
                         onChange={handleChange}
                     />
                 </div>
-            </div>
 
-            {activity.category === 1 && (
-                <div className="space-y-5 border-t border-slate-100 pt-5 mt-5">
-                    <p className="text-sm font-bold text-slate-500 uppercase">Perfil Nutricional Detallado:</p>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div className="grid grid-cols-1 gap-3">
-                            <label htmlFor="fat" className="font-bold text-sm">Grasas (g):</label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {activity.category === 1 && (
+                        <div className="grid grid-cols-1 gap-4">
+                            <label htmlFor="quantity" className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-2">Cantidad</label>
                             <input 
-                                id="fat"
+                                id="quantity"
                                 type="number"
-                                className="border border-slate-300 p-2 rounded-lg"
-                                placeholder="Grasas"
-                                value={activity.fat}
+                                className="w-full bg-lime-50/50 border-none p-4 rounded-2xl text-lime-700 font-bold focus:ring-2 focus:ring-lime-500/20 transition-all"
+                                value={activity.quantity}
                                 onChange={handleChange}
+                                min="1"
                             />
                         </div>
+                    )}
 
-                        <div className="grid grid-cols-1 gap-3">
-                            <label htmlFor="sugar" className="font-bold text-sm">Azúcares (g):</label>
-                            <input 
-                                id="sugar"
-                                type="number"
-                                className="border border-slate-300 p-2 rounded-lg"
-                                placeholder="Azúcares"
-                                value={activity.sugar}
-                                onChange={handleChange}
-                            />
-                        </div>
-
-                        <div className="grid grid-cols-1 gap-3">
-                            <label htmlFor="protein" className="font-bold text-sm">Proteínas (g):</label>
-                            <input 
-                                id="protein"
-                                type="number"
-                                className="border border-slate-300 p-2 rounded-lg"
-                                placeholder="Proteínas"
-                                value={activity.protein}
-                                onChange={handleChange}
-                            />
-                        </div>
-
-                        <div className="grid grid-cols-1 gap-3">
-                            <label htmlFor="carbs" className="font-bold text-sm">Carbohidratos (g):</label>
-                            <input 
-                                id="carbs"
-                                type="number"
-                                className="border border-slate-300 p-2 rounded-lg"
-                                placeholder="Carbohidratos"
-                                value={activity.carbs}
-                                onChange={handleChange}
-                            />
-                        </div>
-
-                        <div className="grid grid-cols-1 gap-3">
-                            <label htmlFor="fiber" className="font-bold text-sm">Fibra (g):</label>
-                            <input 
-                                id="fiber"
-                                type="number"
-                                className="border border-slate-300 p-2 rounded-lg"
-                                placeholder="Fibra"
-                                value={activity.fiber}
-                                onChange={handleChange}
-                            />
-                        </div>
-
-                        <div className="grid grid-cols-1 gap-3">
-                            <label htmlFor="sodium" className="font-bold text-sm">Sodio (mg):</label>
-                            <input 
-                                id="sodium"
-                                type="number"
-                                className="border border-slate-300 p-2 rounded-lg"
-                                placeholder="Sodio"
-                                value={activity.sodium}
-                                onChange={handleChange}
-                            />
-                        </div>
+                    <div className="grid grid-cols-1 gap-4">
+                        <label htmlFor="calories" className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-2">
+                            {activity.category === 1 ? 'Calorías Base' : 'Calorías Quemadas'}
+                        </label>
+                        <input 
+                            id="calories"
+                            type="number"
+                            className="w-full bg-slate-50 border-none p-4 rounded-2xl text-slate-800 font-bold focus:ring-2 focus:ring-lime-500/20 transition-all"
+                            placeholder="0"
+                            value={activity.calories}
+                            onChange={handleChange}
+                        />
                     </div>
                 </div>
-            )}
 
-            <input
+                {activity.category === 1 && (
+                    <div className="space-y-6 pt-6 border-t border-slate-100">
+                        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-300">Desglose Nutricional</p>
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                            {[
+                                {id: 'fat', label: 'Grasas', unit: 'g'},
+                                {id: 'sugar', label: 'Azúcares', unit: 'g'},
+                                {id: 'protein', label: 'Proteínas', unit: 'g'},
+                                {id: 'carbs', label: 'Carbos', unit: 'g'},
+                                {id: 'fiber', label: 'Fibra', unit: 'g'},
+                                {id: 'sodium', label: 'Sodio', unit: 'mg'}
+                            ].map(nutrient => (
+                                <div key={nutrient.id} className="grid grid-cols-1 gap-2">
+                                    <label htmlFor={nutrient.id} className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">{nutrient.label}</label>
+                                    <div className="relative">
+                                        <input 
+                                            id={nutrient.id}
+                                            type="number"
+                                            className="w-full bg-slate-50 border-none p-3 pr-8 rounded-xl text-sm text-slate-700 font-medium focus:ring-2 focus:ring-lime-500/20 transition-all"
+                                            value={activity[nutrient.id as keyof Activity]}
+                                            onChange={handleChange}
+                                        />
+                                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-bold text-slate-300 uppercase">{nutrient.unit}</span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            <button
                 type="submit"
-                className="bg-gray-800 hover:bg-gray-900 w-full p-2 font-bold uppercase text-white cursor-pointer disabled:opacity-10"
-                value={activity.category === 1 ? 'Guardar Comida' : 'Guardar Ejercicio'}
+                className="w-full py-5 bg-slate-900 text-white font-black uppercase tracking-[0.2em] text-xs rounded-2xl shadow-xl shadow-slate-200 hover:bg-black hover:scale-[1.01] active:scale-[0.99] disabled:opacity-20 transition-all cursor-pointer"
                 disabled={!isValidActivity()}
-            />
+            >
+                {activity.category === 1 ? 'Guardar Alimento' : 'Guardar Actividad'}
+            </button>
         </form>
     )
 }

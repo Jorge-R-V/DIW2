@@ -18,66 +18,83 @@ export default function ListadoActividades({activities, setActiveId, deleteActiv
     const isEmptyActivities = useMemo(() => activities.length === 0, [activities])
 
     return (
-        <>
-            <h2 className="text-4xl font-bold text-slate-600 text-center">
-                Historial de Actividad
-            </h2>
+        <div className="space-y-10">
+            <div className="text-center">
+                <h2 className="text-3xl font-black text-slate-800 tracking-tighter uppercase italic">
+                    Historial de <span className="text-lime-500 not-italic">Actividad</span>
+                </h2>
+                <div className="h-1 w-12 bg-lime-500 mx-auto mt-4 rounded-full"></div>
+            </div>
 
             {isEmptyActivities ? 
                 <p className="text-center my-5 text-gray-400">No hay actividades aún...</p> : 
                 
                 activities.map( activity => (
-                    <div key={activity.id} className="px-5 py-10 bg-white mt-5 flex justify-between shadow">
-                        <div className="space-y-2 relative">
-                            <p className={`absolute -top-8 -left-8 px-10 py-2 text-white uppercase font-bold 
-                                ${activity.category === 1 ? 'bg-lime-500' : 'bg-orange-500'}`}>
-                                {categoryName(+activity.category)}
-                            </p>
-                            <p className="text-2xl font-bold pt-5">
-                                <span className="mr-2">
-                                    {activity.name.replace(/\s\(\d+\w+\)|\s\(1 unidad\)/g, '')}
+                    <div key={activity.id} className="relative bg-white p-8 rounded-[2.5rem] shadow-xl shadow-slate-200/40 border border-slate-50 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 group transition-all hover:scale-[1.01]">
+                        <div className="space-y-4 flex-1">
+                            <div className="flex items-center gap-3">
+                                <span className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest ${
+                                    activity.category === 1 
+                                    ? 'bg-lime-100 text-lime-700' 
+                                    : 'bg-orange-100 text-orange-700'
+                                }`}>
+                                    {categoryName(+activity.category)}
                                 </span>
                                 {activity.category === 1 && (
-                                    <span className="text-lime-600 text-sm font-black">x{activity.quantity || 1}</span>
+                                    <span className="text-slate-300 text-xs font-bold uppercase tracking-widest">
+                                        {activity.quantity || 1} {activity.quantity === 1 ? 'Unidad' : 'Unidades'}
+                                    </span>
                                 )}
-                            </p>
-                            <p className="font-black text-4xl text-lime-500">
-                                {activity.calories} {''}
-                                <span>Calorías</span>
+                            </div>
+
+                            <p className="text-2xl font-black text-slate-800 tracking-tight">
+                                {activity.name.replace(/\s\(\d+\w+\)|\s\(1 unidad\)/g, '')}
                             </p>
 
+                            <div className="flex items-baseline gap-2">
+                                <span className="text-4xl font-black text-lime-500 tracking-tighter">{activity.calories}</span>
+                                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Calorías</span>
+                            </div>
+
                             {activity.category === 1 && (
-                                <div className="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-1 mt-4 text-slate-500 font-bold uppercase text-[10px] italic">
-                                    <p>Grasas: <span className="text-yellow-600">{activity.fat || 0} g</span></p>
-                                    <p>Azúcares: <span className="text-purple-600">{activity.sugar || 0} g</span></p>
-                                    <p>Proteína: <span className="text-red-600">{activity.protein || 0} g</span></p>
-                                    <p>Carbos: <span className="text-blue-600">{activity.carbs || 0} g</span></p>
-                                    <p>Fibra: <span className="text-emerald-600">{activity.fiber || 0} g</span></p>
-                                    <p>Sodio: <span className="text-pink-600">{activity.sodium || 0} mg</span></p>
+                                <div className="grid grid-cols-3 md:grid-cols-6 gap-4 pt-4 border-t border-slate-50">
+                                    {[
+                                        {label: 'Gra', value: activity.fat, color: 'text-yellow-600'},
+                                        {label: 'Azú', value: activity.sugar, color: 'text-purple-600'},
+                                        {label: 'Pro', value: activity.protein, color: 'text-red-600'},
+                                        {label: 'Car', value: activity.carbs, color: 'text-blue-600'},
+                                        {label: 'Fib', value: activity.fiber, color: 'text-emerald-600'},
+                                        {label: 'Sod', value: activity.sodium, color: 'text-pink-600', unit: 'mg'}
+                                    ].map(n => (
+                                        <div key={n.label} className="text-center">
+                                            <p className="text-[9px] font-black text-slate-300 uppercase tracking-tighter mb-0.5">{n.label}</p>
+                                            <p className={`text-xs font-bold ${n.color}`}>{n.value || 0}<span className="text-[8px] ml-0.5">{n.unit || 'g'}</span></p>
+                                        </div>
+                                    ))}
                                 </div>
                             )}
                         </div>
 
-                        <div className="flex gap-5 items-center">
+                        <div className="flex md:flex-col gap-3 w-full md:w-auto pt-6 md:pt-0 border-t md:border-t-0 md:border-l border-slate-50 md:pl-8">
                             <button
                                 onClick={() => setActiveId(activity.id)}
+                                className="flex-1 md:flex-none p-3 rounded-xl bg-slate-50 text-slate-400 hover:bg-lime-50 hover:text-lime-600 transition-all flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-widest"
                             >
-                                <PencilSquareIcon
-                                    className="h-8 w-8 text-gray-800"
-                                />
+                                <PencilSquareIcon className="h-5 w-5" />
+                                <span className="md:hidden">Editar</span>
                             </button>
 
                             <button
                                 onClick={() => deleteActivity(activity.id)}
+                                className="flex-1 md:flex-none p-3 rounded-xl bg-slate-50 text-slate-400 hover:bg-red-50 hover:text-red-500 transition-all flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-widest"
                             >
-                                <XCircleIcon
-                                    className="h-8 w-8 text-red-500"
-                                />
+                                <XCircleIcon className="h-5 w-5" />
+                                <span className="md:hidden">Borrar</span>
                             </button>
                         </div>
                     </div>
                 ))
             }
-        </>
+        </div>
     )
 }

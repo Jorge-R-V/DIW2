@@ -1,73 +1,67 @@
-# React + TypeScript + Vite
+# NutriTrack - Nutrición Inteligente
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+NutriTrack no es solo una calculadora de calorías; es tu compañero digital para un estilo de vida saludable. Diseñado con una interfaz moderna y fluida, te permite monitorear tu nutrición y actividad física con precisión científica y elegancia visual.
 
-Currently, two official plugins are available:
+## 🚀 Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Calculadora de Macronutrientes**: Desglose detallado de grasas, azúcares, proteínas, carbohidratos, fibra y sodio.
+- **Registro de Actividades**: Control total sobre tus comidas y entrenamientos.
+- **Diseño Ultra-Responsivo**: Experiencia optimizada para móviles, tablets y escritorio siguiendo las mejores prácticas de Tailwind CSS.
+- **Cámara Inteligente (Concepto)**: Interfaz de vanguardia lista para la integración con IA.
 
-## React Compiler
+## 🛠️ Herramientas Utilizadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Durante el desarrollo de NutriTrack se han utilizado las siguientes tecnologías de última generación:
 
-## Expanding the ESLint configuration
+- **Vite**: Motor de compilación ultra-rápido para una experiencia de desarrollo y producción optimizada.
+- **React 19**: Biblioteca líder para la construcción de interfaces de usuario dinámicas y eficientes.
+- **Tailwind CSS**: Framework de CSS utilitario para un diseño responsivo y sofisticado con compilación optimizada en producción.
+- **TypeScript**: Superset de JavaScript que garantiza la robustez y calidad del código fuente.
+- **Heroicons**: Iconografía elegante desarrollada por los creadores de Tailwind CSS.
+- **PostCSS & Autoprefixer**: Para garantizar la compatibilidad entre navegadores y optimizar el CSS resultante.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📦 Instalación y Desarrollo
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Para poner en marcha el proyecto localmente, sigue estos pasos:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1. **Instalar dependencias**:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+   ```bash
+   npm install
+   ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. **Iniciar servidor de desarrollo**:
+   ```bash
+   npm run dev
+   ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🏗️ Compilación para Producción
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Para generar el código fuente optimizado y compilar el CSS final:
+
+1. **Ejecutar build**:
+   ```bash
+   npm run build
+   ```
+
+Este comando realizará las siguientes acciones:
+
+- Verificación de tipos con TypeScript.
+- Compilación y minificación del código JavaScript/React.
+- **Purga y compilación del CSS resultante de Tailwind**, generando archivos estáticos optimizados en la carpeta `dist`.
+
+2. **Previsualizar build**:
+   ```bash
+   npm run preview
+   ```
+
+## 📂 Estructura del Proyecto
+
+- `src/`: Contiene todo el código fuente React, componentes y lógica de la aplicación.
+- `public/`: Archivos estáticos como el favicon.
+- `index.html`, `calculadora.html`, `camara.html`: Puntos de entrada para las diferentes secciones de la web.
+- `tailwind.config.js`: Configuración personalizada del diseño.
+
+---
+
+**Desarrollado por Jorge-R-V**

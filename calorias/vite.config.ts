@@ -11,6 +11,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         calculadora: resolve(__dirname, 'calculadora.html'),
         camara: resolve(__dirname, 'camara.html'),
+        comoFunciona: resolve(__dirname, 'como-funciona.html'),
       },
     },
   },

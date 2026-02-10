@@ -21,6 +21,11 @@ export default function Landing() {
             </span>
           </a>
 
+          <div className="flex items-center gap-8">
+            <a href="como-funciona.html" className="hidden sm:block text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-lime-600 transition-colors">
+              Cómo funciona
+            </a>
+          </div>
         </nav>
       </header>
 
@@ -32,7 +37,7 @@ export default function Landing() {
               vive <span className="italic font-serif font-light text-slate-400">bien</span>.
             </h1>
             <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in-up [animation-delay:200ms]">
-                El equilibrio perfecto entre ciencia y bienestar. Monitorea tu nutrición con precisión.
+                Tu compañero diario para comer de forma equilibrada. Registra tus comidas y actividades de la manera más sencilla.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up [animation-delay:400ms]">
                 <a 
@@ -47,36 +52,51 @@ export default function Landing() {
             </div>
           </section>
 
-          <section id="caracteristicas" className="grid md:grid-cols-2 gap-16 mb-16 animate-fade-in-up [animation-delay:600ms]">
-            <a href="calculadora.html?category=1" className="group cursor-pointer">
-                <div className="mb-6 overflow-hidden rounded-3xl bg-white shadow-sm border border-slate-100 aspect-video flex items-center justify-center p-8 group-hover:border-lime-200 transition-all">
-                    <div className="w-16 h-16 bg-lime-50 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110">
-                        <Icon name="sparkles" className="w-8 h-8 text-lime-600" />
-                    </div>
+          <section id="caracteristicas" className="grid md:grid-cols-2 gap-8 mb-8 animate-fade-in-up [animation-delay:600ms]">
+            <a href="calculadora.html?category=1" className="relative overflow-hidden rounded-[2.5rem] bg-white p-8 min-h-[220px] shadow-xl shadow-slate-200/50 border border-white group hover:scale-[1.02] transition-all flex flex-col justify-end">
+                <div className="relative z-10">
+                    <h3 className="text-xl font-bold mb-2">Nutrición Inteligente</h3>
+                    <p className="text-slate-500 leading-relaxed text-sm max-w-[80%]">Algoritmos diseñados para darte el desglose exacto de macronutrientes en cada comida.</p>
                 </div>
-                <h3 className="text-xl font-bold mb-3">Nutrición Inteligente</h3>
-                <p className="text-slate-500 leading-relaxed text-sm">Algoritmos diseñados para darte el desglose exacto de macronutrientes en cada comida.</p>
+                <Icon 
+                    name="sparkles" 
+                    className="absolute -right-4 -bottom-4 size-40 text-slate-50/50 group-hover:text-lime-500/10 -rotate-12 group-hover:-rotate-6 group-hover:scale-110 transition-all duration-500" 
+                />
             </a>
-            <a href="calculadora.html?category=2" className="group cursor-pointer">
-                <div className="mb-6 overflow-hidden rounded-3xl bg-white shadow-sm border border-slate-100 aspect-video flex items-center justify-center p-8 group-hover:border-emerald-200 transition-all">
-                    <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110">
-                        <Icon name="bolt" className="w-8 h-8 text-emerald-600" />
-                    </div>
+            <a href="calculadora.html?category=2" className="relative overflow-hidden rounded-[2.5rem] bg-white p-8 min-h-[220px] shadow-xl shadow-slate-200/50 border border-white group hover:scale-[1.02] transition-all flex flex-col justify-end">
+                <div className="relative z-10">
+                    <h3 className="text-xl font-bold mb-2">Energía en Movimiento</h3>
+                    <p className="text-slate-500 leading-relaxed text-sm max-w-[80%]">Registra tus sesiones de entrenamiento y visualiza el impacto en tu balance diario.</p>
                 </div>
-                <h3 className="text-xl font-bold mb-3">Energía en Movimiento</h3>
-                <p className="text-slate-500 leading-relaxed text-sm">Registra tus sesiones de entrenamiento y visualiza el impacto inmediato en tu balance diario.</p>
+                <Icon 
+                    name="bolt" 
+                    className="absolute -right-4 -bottom-4 size-40 text-slate-50/50 group-hover:text-emerald-500/10 -rotate-12 group-hover:-rotate-6 group-hover:scale-110 transition-all duration-500" 
+                />
             </a>
           </section>
 
-          <section className="max-w-md mx-auto mb-40 animate-fade-in-up [animation-delay:800ms]">
-            <a href="camara.html" className="group cursor-pointer block text-center">
-                <div className="mb-6 overflow-hidden rounded-3xl bg-white shadow-sm border border-slate-100 aspect-video flex items-center justify-center p-8 group-hover:border-purple-200 transition-all">
-                    <div className="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110">
-                        <Icon name="camera" className="w-8 h-8 text-purple-600" />
-                    </div>
+          <section className="max-w-xl mx-auto mb-20 animate-fade-in-up [animation-delay:800ms]">
+            <a href="camara.html" className="relative overflow-hidden rounded-[2.5rem] bg-white p-8 min-h-[220px] shadow-xl shadow-slate-200/50 border border-white group hover:scale-[1.02] transition-all flex flex-col justify-end text-center items-center">
+                <div className="relative z-10">
+                    <h3 className="text-xl font-bold mb-2">Cámara Inteligente</h3>
+                    <p className="text-slate-500 leading-relaxed text-sm">Escanea tus platos y te calculamos todo automáticamente usando IA avanzada.</p>
                 </div>
-                <h3 className="text-xl font-bold mb-3">Cámara Inteligente</h3>
-                <p className="text-slate-500 leading-relaxed text-sm">Escanea tus platos y te calculamos todo automáticamente usando IA avanzada.</p>
+                <Icon 
+                    name="camera" 
+                    className="absolute -right-4 -bottom-4 size-44 text-slate-50/50 group-hover:text-purple-500/10 -rotate-12 group-hover:-rotate-6 group-hover:scale-110 transition-all duration-500" 
+                />
+            </a>
+          </section>
+
+          <section className="bg-slate-900 rounded-[3rem] p-12 md:p-16 text-white text-center mb-20 animate-fade-in-up [animation-delay:1000ms]">
+            <h2 className="text-3xl font-black mb-6 tracking-tight">¿Nuevo en NutriTrack?</h2>
+            <p className="text-slate-400 mb-10 max-w-md mx-auto">Descubre cómo nuestra tecnología te ayuda a llevar un control total de tu salud sin complicaciones.</p>
+            <a 
+              href="como-funciona.html"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-full transition-all backdrop-blur-sm border border-white/10"
+            >
+              Ver guía de uso
+              <Icon name="sparkles" className="w-4 h-4 text-lime-400" />
             </a>
           </section>
         </div>

@@ -1,4 +1,4 @@
-import { PencilSquareIcon, XCircleIcon } from '@heroicons/react/24/outline'
+import Icon from "./Icon"
 import type { Activity } from "../types"
 import { categories } from "../data/categories"
 import { useMemo } from "react"
@@ -80,7 +80,7 @@ export default function ListadoActividades({activities, setActiveId, deleteActiv
                                 onClick={() => setActiveId(activity.id)}
                                 className="flex-1 md:flex-none p-3 rounded-xl bg-slate-50 text-slate-400 hover:bg-lime-50 hover:text-lime-600 transition-all flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-widest"
                             >
-                                <PencilSquareIcon className="h-5 w-5" />
+                                <Icon name="pencil-square" className="h-5 w-5" />
                                 <span className="md:hidden">Editar</span>
                             </button>
 
@@ -88,7 +88,7 @@ export default function ListadoActividades({activities, setActiveId, deleteActiv
                                 onClick={() => deleteActivity(activity.id)}
                                 className="flex-1 md:flex-none p-3 rounded-xl bg-slate-50 text-slate-400 hover:bg-red-50 hover:text-red-500 transition-all flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-widest"
                             >
-                                <XCircleIcon className="h-5 w-5" />
+                                <Icon name="x-circle" className="h-5 w-5" />
                                 <span className="md:hidden">Borrar</span>
                             </button>
                         </div>

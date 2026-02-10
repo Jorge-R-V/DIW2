@@ -1,9 +1,4 @@
-import { 
-  SparklesIcon, 
-  BoltIcon, 
-  CameraIcon,
-  FireIcon
-} from '@heroicons/react/24/outline'
+import Icon from "./components/Icon"
 
 export default function Landing() {
   return (
@@ -19,7 +14,7 @@ export default function Landing() {
         <nav className="max-w-5xl mx-auto px-6 py-8 flex justify-between items-center">
           <a href="index.html" className="flex items-center gap-3 animate-fade-in-up hover:opacity-80 transition-opacity">
             <div className="w-10 h-10 bg-lime-500 rounded-xl flex items-center justify-center shadow-lg shadow-lime-200 rotate-3 transform transition-transform hover:rotate-0">
-              <FireIcon className="w-6 h-6 text-white" />
+                        <Icon name="fire" className="w-6 h-6 text-white" />
             </div>
             <span className="text-2xl font-black tracking-tight">
               Nutri<span className="text-lime-500">Track</span>
@@ -56,7 +51,7 @@ export default function Landing() {
             <a href="calculadora.html?category=1" className="group cursor-pointer">
                 <div className="mb-6 overflow-hidden rounded-3xl bg-white shadow-sm border border-slate-100 aspect-video flex items-center justify-center p-8 group-hover:border-lime-200 transition-all">
                     <div className="w-16 h-16 bg-lime-50 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110">
-                        <SparklesIcon className="w-8 h-8 text-lime-600" />
+                        <Icon name="sparkles" className="w-8 h-8 text-lime-600" />
                     </div>
                 </div>
                 <h3 className="text-xl font-bold mb-3">Nutrición Inteligente</h3>
@@ -65,7 +60,7 @@ export default function Landing() {
             <a href="calculadora.html?category=2" className="group cursor-pointer">
                 <div className="mb-6 overflow-hidden rounded-3xl bg-white shadow-sm border border-slate-100 aspect-video flex items-center justify-center p-8 group-hover:border-emerald-200 transition-all">
                     <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110">
-                        <BoltIcon className="w-8 h-8 text-emerald-600" />
+                        <Icon name="bolt" className="w-8 h-8 text-emerald-600" />
                     </div>
                 </div>
                 <h3 className="text-xl font-bold mb-3">Energía en Movimiento</h3>
@@ -77,7 +72,7 @@ export default function Landing() {
             <a href="camara.html" className="group cursor-pointer block text-center">
                 <div className="mb-6 overflow-hidden rounded-3xl bg-white shadow-sm border border-slate-100 aspect-video flex items-center justify-center p-8 group-hover:border-purple-200 transition-all">
                     <div className="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110">
-                        <CameraIcon className="w-8 h-8 text-purple-600" />
+                        <Icon name="camera" className="w-8 h-8 text-purple-600" />
                     </div>
                 </div>
                 <h3 className="text-xl font-bold mb-3">Cámara Inteligente</h3>

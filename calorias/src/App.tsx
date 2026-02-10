@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { FireIcon } from "@heroicons/react/24/outline"
+import Icon from "./components/Icon"
 import FormularioActividades from "./components/FormularioActividades"
 import ListadoActividades from "./components/ListadoActividades"
 import RegistroCalorias from "./components/RegistroCalorias"
@@ -48,7 +48,7 @@ function App() {
         <div className="max-w-5xl mx-auto px-6 py-8 flex justify-between items-center transition-all">
           <a href="index.html" className="flex items-center gap-3 animate-fade-in-up hover:opacity-80 transition-opacity">
             <div className="w-10 h-10 bg-lime-500 rounded-xl flex items-center justify-center shadow-lg shadow-lime-200 rotate-3 transform transition-transform hover:rotate-0">
-              <FireIcon className="w-6 h-6 text-white" />
+              <Icon name="fire" className="w-6 h-6 text-white" />
             </div>
             <h1 className="text-2xl font-black tracking-tight">
               Nutri<span className="text-lime-500">Track</span>

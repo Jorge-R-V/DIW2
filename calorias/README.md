@@ -1,28 +1,29 @@
-# NutriTrack - Nutrición Inteligente
+# 🥗 NutriTrack - Nutrición Inteligente
 
 NutriTrack no es solo una calculadora de calorías; es tu compañero digital para un estilo de vida saludable. Diseñado con una interfaz moderna y fluida, te permite monitorear tu nutrición y actividad física con precisión científica y elegancia visual.
+
 
 ## 🚀 Características
 
 - **Calculadora de Macronutrientes**: Desglose detallado de grasas, azúcares, proteínas, carbohidratos, fibra y sodio.
-- **Registro de Actividades**: Control total sobre tus comidas y entrenamientos.
-- **Diseño Ultra-Responsivo**: Experiencia optimizada para móviles, tablets y escritorio siguiendo las mejores prácticas de Tailwind CSS.
-- **Cámara Inteligente (Concepto)**: Interfaz de vanguardia lista para la integración con IA.
+- **Registro de Actividades**: Control total sobre tus comidas y entrenamientos con historial interactivo.
+- **Sistema de Iconos Optimizado**: Implementación de una arquitectura de sprites SVG propia para una mínima huella de red.
+- **Diseño Premium**: Experiencia ultra-responsiva con animaciones fluidas y estética de cristal (glassmorphism).
+- **Cámara Inteligente (Concepto)**: Interfaz de vanguardia lista para la integración con IA para el escaneo de alimentos.
 
 ## 🛠️ Herramientas Utilizadas
 
-Durante el desarrollo de NutriTrack se han utilizado las siguientes tecnologías de última generación:
+NutriTrack utiliza lo último en desarrollo web moderno:
 
-- **Vite**: Motor de compilación ultra-rápido para una experiencia de desarrollo y producción optimizada.
-- **React 19**: Biblioteca líder para la construcción de interfaces de usuario dinámicas y eficientes.
-- **Tailwind CSS**: Framework de CSS utilitario para un diseño responsivo y sofisticado con compilación optimizada en producción.
-- **TypeScript**: Superset de JavaScript que garantiza la robustez y calidad del código fuente.
-- **Heroicons**: Iconografía elegante desarrollada por los creadores de Tailwind CSS.
-- **PostCSS & Autoprefixer**: Para garantizar la compatibilidad entre navegadores y optimizar el CSS resultante.
+- **React 19**: Biblioteca líder para interfaces dinámicas.
+- **Vite**: Motor de compilación de nueva generación.
+- **Tailwind CSS**: Framework utilitario para diseño sofisticado y responsivo.
+- **TypeScript**: Tipado estático para un código robusto y libre de errores.
+- **Custom SVG Sprite Architecture**: Sistema a medida que elimina la dependencia de librerías de iconos externas pesadas.
 
 ## 📦 Instalación y Desarrollo
 
-Para poner en marcha el proyecto localmente, sigue estos pasos:
+Sigue estos pasos para ejecutar el proyecto en tu entorno local:
 
 1. **Instalar dependencias**:
 
@@ -37,31 +38,25 @@ Para poner en marcha el proyecto localmente, sigue estos pasos:
 
 ## 🏗️ Compilación para Producción
 
-Para generar el código fuente optimizado y compilar el CSS final:
+Para generar el código fuente optimizado y compilar el sistema de diseño:
 
-1. **Ejecutar build**:
-   ```bash
-   npm run build
-   ```
+```bash
+npm run build
+```
 
-Este comando realizará las siguientes acciones:
+Este comando realiza:
 
-- Verificación de tipos con TypeScript.
-- Compilación y minificación del código JavaScript/React.
-- **Purga y compilación del CSS resultante de Tailwind**, generando archivos estáticos optimizados en la carpeta `dist`.
+- Verificación exhaustiva de tipos.
+- Compilación y minificación del código fuente.
+- Purga dinámica de CSS sobrante para una velocidad de carga instantánea.
 
-2. **Previsualizar build**:
-   ```bash
-   npm run preview
-   ```
+## 📂 Arquitectura del Proyecto
 
-## 📂 Estructura del Proyecto
-
-- `src/`: Contiene todo el código fuente React, componentes y lógica de la aplicación.
-- `public/`: Archivos estáticos como el favicon.
-- `index.html`, `calculadora.html`, `camara.html`: Puntos de entrada para las diferentes secciones de la web.
-- `tailwind.config.js`: Configuración personalizada del diseño.
+- `src/components/Icon.tsx`: Componente centralizado para la gestión de iconos.
+- `public/assets/sprite.svg`: Almacén único de activos vectoriales.
+- `src/hooks/`: Lógica de negocio y gestión de estado personalizada.
+- `src/data/`: Definiciones de categorías y metadatos de nutrición.
 
 ---
 
-**Desarrollado por Jorge-R-V**
+**Desarrollado con ❤️ por [Jorge-R-V](https://github.com/Jorge-R-V)**

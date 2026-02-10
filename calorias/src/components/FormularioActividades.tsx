@@ -20,7 +20,8 @@ const initialState : Activity = {
     carbs: 0,
     fiber: 0,
     sodium: 0,
-    quantity: 1
+    quantity: 1,
+    unit: 'unid'
 }
 
 export default function FormularioActividades({saveActivity, activeId, activities} : FormularioActividadesProps) {
@@ -69,13 +70,13 @@ export default function FormularioActividades({saveActivity, activeId, activitie
             setActivity({
                 ...activity,
                 quantity: newQuantity,
-                calories: Math.round(baseNutrients.calories * newQuantity),
+                calories: Number((baseNutrients.calories * newQuantity).toFixed(2)),
                 fat: Number((baseNutrients.fat * newQuantity).toFixed(2)),
                 sugar: Number((baseNutrients.sugar * newQuantity).toFixed(2)),
                 protein: Number((baseNutrients.protein * newQuantity).toFixed(2)),
                 carbs: Number((baseNutrients.carbs * newQuantity).toFixed(2)),
                 fiber: Number((baseNutrients.fiber * newQuantity).toFixed(2)),
-                sodium: Math.round(baseNutrients.sodium * newQuantity),
+                sodium: Number((baseNutrients.sodium * newQuantity).toFixed(2)),
             })
             return
         }
@@ -121,16 +122,18 @@ export default function FormularioActividades({saveActivity, activeId, activitie
                 protein: selectedProd.protein,
                 carbs: selectedProd.carbs,
                 fiber: selectedProd.fiber,
-                sodium: selectedProd.sodium
+                sodium: selectedProd.sodium,
+                quantity: selectedProd.quantity,
+                unit: selectedProd.unit
             })
             setBaseNutrients({
-                calories: selectedProd.calories,
-                fat: selectedProd.fat,
-                sugar: selectedProd.sugar,
-                protein: selectedProd.protein,
-                carbs: selectedProd.carbs,
-                fiber: selectedProd.fiber,
-                sodium: selectedProd.sodium
+                calories: selectedProd.calories / (selectedProd.quantity || 1),
+                fat: selectedProd.fat / (selectedProd.quantity || 1),
+                sugar: selectedProd.sugar / (selectedProd.quantity || 1),
+                protein: selectedProd.protein / (selectedProd.quantity || 1),
+                carbs: selectedProd.carbs / (selectedProd.quantity || 1),
+                fiber: selectedProd.fiber / (selectedProd.quantity || 1),
+                sodium: selectedProd.sodium / (selectedProd.quantity || 1)
             })
         }
     }
@@ -231,15 +234,25 @@ export default function FormularioActividades({saveActivity, activeId, activitie
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {activity.category === 1 && (
                         <div className="grid grid-cols-1 gap-4">
-                            <label htmlFor="quantity" className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-2">Cantidad</label>
-                            <input 
-                                id="quantity"
-                                type="number"
-                                className="w-full bg-lime-50/50 border-none p-4 rounded-2xl text-lime-700 font-bold focus:ring-2 focus:ring-lime-500/20 transition-all"
-                                value={activity.quantity}
-                                onChange={handleChange}
-                                min="1"
-                            />
+                            <label htmlFor="quantity" className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-2">
+                                {activity.unit === 'ml' ? 'Mililitros (ml)' : (activity.unit === 'g' ? 'Gramos (g)' : 'Cantidad')}
+                            </label>
+                            <div className="relative">
+                                <input 
+                                    id="quantity"
+                                    type="number"
+                                    className="w-full bg-lime-50/50 border-none p-4 rounded-2xl text-lime-700 font-bold focus:ring-2 focus:ring-lime-500/20 transition-all"
+                                    value={activity.quantity}
+                                    onChange={handleChange}
+                                    min="1"
+                                />
+                                {activity.unit === 'ml' && (
+                                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-black text-lime-600/40 uppercase tracking-widest pointer-events-none">ml</span>
+                                )}
+                                {activity.unit === 'g' && (
+                                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-black text-lime-600/40 uppercase tracking-widest pointer-events-none">g</span>
+                                )}
+                            </div>
                         </div>
                     )}
 

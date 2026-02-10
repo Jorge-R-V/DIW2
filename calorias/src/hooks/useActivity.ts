@@ -33,41 +33,68 @@ export const useActivity = () => {
         setActivities([])
     }
 
-    const netCalories = useMemo(() => activities.reduce((total, activity) => 
-        activity.category === 1 ? total + (activity.calories * (activity.quantity || 1)) : total - activity.calories, 0
-    ), [activities])
+    const netCalories = useMemo(() => {
+        const total = activities.reduce((total, activity) => 
+            activity.category === 1 ? total + activity.calories : total - activity.calories, 0
+        )
+        return Number(total.toFixed(2))
+    }, [activities])
 
-    const caloriesConsumed = useMemo(() => activities.reduce((total, activity) => 
-        activity.category === 1 ? total + (activity.calories * (activity.quantity || 1)) : total, 0
-    ), [activities])
+    const caloriesConsumed = useMemo(() => {
+        const total = activities.reduce((total, activity) => 
+            activity.category === 1 ? total + activity.calories : total, 0
+        )
+        return Number(total.toFixed(2))
+    }, [activities])
 
-    const caloriesBurned = useMemo(() => activities.reduce((total, activity) => 
-        activity.category === 2 ? total + activity.calories : total, 0
-    ), [activities])
+    const caloriesBurned = useMemo(() => {
+        const total = activities.reduce((total, activity) => 
+            activity.category === 2 ? total + activity.calories : total, 0
+        )
+        return Number(total.toFixed(2))
+    }, [activities])
 
-    const totalFat = useMemo(() => activities.reduce((total, activity) => 
-        activity.category === 1 ? total + ((activity.fat || 0) * (activity.quantity || 1)) : total, 0
-    ), [activities])
+    const totalFat = useMemo(() => {
+        const total = activities.reduce((total, activity) => 
+            activity.category === 1 ? total + (activity.fat || 0) : total, 0
+        )
+        return Number(total.toFixed(2))
+    }, [activities])
 
-    const totalSugar = useMemo(() => activities.reduce((total, activity) => 
-        activity.category === 1 ? total + ((activity.sugar || 0) * (activity.quantity || 1)) : total, 0
-    ), [activities])
+    const totalSugar = useMemo(() => {
+        const total = activities.reduce((total, activity) => 
+            activity.category === 1 ? total + (activity.sugar || 0) : total, 0
+        )
+        return Number(total.toFixed(2))
+    }, [activities])
 
-    const totalProtein = useMemo(() => activities.reduce((total, activity) => 
-        activity.category === 1 ? total + ((activity.protein || 0) * (activity.quantity || 1)) : total, 0
-    ), [activities])
+    const totalProtein = useMemo(() => {
+        const total = activities.reduce((total, activity) => 
+            activity.category === 1 ? total + (activity.protein || 0) : total, 0
+        )
+        return Number(total.toFixed(2))
+    }, [activities])
 
-    const totalCarbs = useMemo(() => activities.reduce((total, activity) => 
-        activity.category === 1 ? total + ((activity.carbs || 0) * (activity.quantity || 1)) : total, 0
-    ), [activities])
+    const totalCarbs = useMemo(() => {
+        const total = activities.reduce((total, activity) => 
+            activity.category === 1 ? total + (activity.carbs || 0) : total, 0
+        )
+        return Number(total.toFixed(2))
+    }, [activities])
 
-    const totalFiber = useMemo(() => activities.reduce((total, activity) => 
-        activity.category === 1 ? total + ((activity.fiber || 0) * (activity.quantity || 1)) : total, 0
-    ), [activities])
+    const totalFiber = useMemo(() => {
+        const total = activities.reduce((total, activity) => 
+            activity.category === 1 ? total + (activity.fiber || 0) : total, 0
+        )
+        return Number(total.toFixed(2))
+    }, [activities])
 
-    const totalSodium = useMemo(() => activities.reduce((total, activity) => 
-        activity.category === 1 ? total + ((activity.sodium || 0) * (activity.quantity || 1)) : total, 0
-    ), [activities])
+    const totalSodium = useMemo(() => {
+        const total = activities.reduce((total, activity) => 
+            activity.category === 1 ? total + (activity.sodium || 0) : total, 0
+        )
+        return Number(total.toFixed(2))
+    }, [activities])
 
     const isEmptyActivities = useMemo(() => activities.length === 0, [activities])
 

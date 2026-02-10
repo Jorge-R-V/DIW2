@@ -42,7 +42,7 @@ export default function ListadoActividades({activities, setActiveId, deleteActiv
                                 </span>
                                 {activity.category === 1 && (
                                     <span className="text-slate-300 text-xs font-bold uppercase tracking-widest">
-                                        {activity.quantity || 1} {activity.quantity === 1 ? 'Unidad' : 'Unidades'}
+                                        {activity.quantity || 1} {activity.unit === 'ml' ? 'ml' : (activity.unit === 'g' ? 'g' : (activity.quantity === 1 ? 'Unidad' : 'Unidades'))}
                                     </span>
                                 )}
                             </div>
@@ -52,7 +52,9 @@ export default function ListadoActividades({activities, setActiveId, deleteActiv
                             </p>
 
                             <div className="flex items-baseline gap-2">
-                                <span className="text-4xl font-black text-lime-500 tracking-tighter">{activity.calories}</span>
+                                <span className="text-4xl font-black text-lime-500 tracking-tighter">
+                                    {typeof activity.calories === 'number' ? Number(activity.calories).toFixed(2).replace(/\.00$/, '') : activity.calories}
+                                </span>
                                 <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Calorías</span>
                             </div>
 
@@ -68,7 +70,10 @@ export default function ListadoActividades({activities, setActiveId, deleteActiv
                                     ].map(n => (
                                         <div key={n.label} className="text-center">
                                             <p className="text-[9px] font-black text-slate-300 uppercase tracking-tighter mb-0.5">{n.label}</p>
-                                            <p className={`text-xs font-bold ${n.color}`}>{n.value || 0}<span className="text-[8px] ml-0.5">{n.unit || 'g'}</span></p>
+                                            <p className={`text-xs font-bold ${n.color}`}>
+                                                {typeof n.value === 'number' ? Number(n.value).toFixed(2).replace(/\.00$/, '') : n.value || 0}
+                                                <span className="text-[8px] ml-0.5">{n.unit || 'g'}</span>
+                                            </p>
                                         </div>
                                     ))}
                                 </div>

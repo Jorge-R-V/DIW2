@@ -14,5 +14,6 @@ export type Activity = {
     carbs: number,
     fiber: number,
     sodium: number,
-    quantity: number
+    quantity: number,
+    unit: string
 }

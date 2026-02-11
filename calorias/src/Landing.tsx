@@ -42,7 +42,7 @@ export default function Landing() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up [animation-delay:400ms]">
                 <a 
                     href="calculadora.html"
-                    className="w-full sm:w-auto px-10 py-5 bg-lime-500 text-white font-bold rounded-full shadow-2xl shadow-lime-200 hover:bg-lime-600 transition-all transform hover:-translate-y-1 active:scale-95"
+                    className="btn-primary"
                 >
                     Empezar ahora
                 </a>

@@ -157,7 +157,7 @@ export default function FormularioActividades({saveActivity, activeId, activitie
 
     return (
         <form 
-            className="space-y-8 bg-white/60 backdrop-blur-xl p-8 md:p-12 rounded-[2.5rem] border border-white shadow-2xl shadow-slate-200/50 transition-all hover:bg-white/80"
+            className="card-glass space-y-8"
             onSubmit={handleSubmit}
         >
             <div className="text-center mb-8">
@@ -168,7 +168,7 @@ export default function FormularioActividades({saveActivity, activeId, activitie
             </div>
 
             <div className="grid grid-cols-1 gap-4">
-                <label htmlFor="category" className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-2">Categoría</label>
+                <label htmlFor="category" className="label-uppercase">Categoría</label>
                 <div className="flex p-1 bg-slate-100 rounded-2xl">
                     {categories.map(category => (
                         <button
@@ -189,13 +189,13 @@ export default function FormularioActividades({saveActivity, activeId, activitie
 
             <div key={activity.category} className="space-y-8 animate-switch">
                 <div className="grid grid-cols-1 gap-4">
-                    <label htmlFor="product-hint" className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-2">
+                    <label htmlFor="product-hint" className="label-uppercase">
                         {activity.category === 1 ? 'Seleccionar Alimento' : 'Seleccionar Ejercicio'}
                     </label>
                     <div className="relative group">
                         <select 
                             id="product-hint"
-                            className="w-full bg-slate-50 border-none p-4 rounded-2xl text-slate-800 font-medium appearance-none focus:ring-2 focus:ring-lime-500/20 transition-all cursor-pointer"
+                            className="input-field appearance-none cursor-pointer"
                             onChange={handleProductSelect}
                             value=""
                         >
@@ -218,13 +218,13 @@ export default function FormularioActividades({saveActivity, activeId, activitie
                 </div>
 
                 <div className="grid grid-cols-1 gap-4">
-                    <label htmlFor="name" className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-2">
+                    <label htmlFor="name" className="label-uppercase">
                         {activity.category === 1 ? 'Alimento' : 'Actividad'}
                     </label>
                     <input 
                         id="name"
                         type="text"
-                        className="w-full bg-slate-50 border-none p-4 rounded-2xl text-slate-800 font-medium placeholder:text-slate-300 focus:ring-2 focus:ring-lime-500/20 transition-all"
+                        className="input-field"
                         placeholder={activity.category === 1 ? 'Ej. Manzana, Tostadas...' : 'Ej. Correr, Natación...'}
                         value={activity.name}
                         onChange={handleChange}
@@ -234,7 +234,7 @@ export default function FormularioActividades({saveActivity, activeId, activitie
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {activity.category === 1 && (
                         <div className="grid grid-cols-1 gap-4">
-                            <label htmlFor="quantity" className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-2">
+                            <label htmlFor="quantity" className="label-uppercase">
                                 {activity.unit === 'ml' ? 'Mililitros (ml)' : (activity.unit === 'g' ? 'Gramos (g)' : 'Cantidad')}
                             </label>
                             <div className="relative">
@@ -257,13 +257,13 @@ export default function FormularioActividades({saveActivity, activeId, activitie
                     )}
 
                     <div className="grid grid-cols-1 gap-4">
-                        <label htmlFor="calories" className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-2">
+                        <label htmlFor="calories" className="label-uppercase">
                             {activity.category === 1 ? 'Calorías Base' : 'Calorías Quemadas'}
                         </label>
                         <input 
                             id="calories"
                             type="number"
-                            className="w-full bg-slate-50 border-none p-4 rounded-2xl text-slate-800 font-bold focus:ring-2 focus:ring-lime-500/20 transition-all"
+                            className="input-field font-bold"
                             placeholder="0"
                             value={activity.calories}
                             onChange={handleChange}
@@ -284,7 +284,7 @@ export default function FormularioActividades({saveActivity, activeId, activitie
                                 {id: 'sodium', label: 'Sodio', unit: 'mg'}
                             ].map(nutrient => (
                                 <div key={nutrient.id} className="grid grid-cols-1 gap-2">
-                                    <label htmlFor={nutrient.id} className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">{nutrient.label}</label>
+                                    <label htmlFor={nutrient.id} className="label-uppercase !ml-1 !text-[10px]">{nutrient.label}</label>
                                     <div className="relative">
                                         <input 
                                             id={nutrient.id}
@@ -304,7 +304,7 @@ export default function FormularioActividades({saveActivity, activeId, activitie
 
             <button
                 type="submit"
-                className="w-full py-5 bg-slate-900 text-white font-black uppercase tracking-[0.2em] text-xs rounded-2xl shadow-xl shadow-slate-200 hover:bg-black hover:scale-[1.01] active:scale-[0.99] disabled:opacity-20 transition-all cursor-pointer"
+                className="btn-dark"
                 disabled={!isValidActivity()}
             >
                 {activity.category === 1 ? 'Guardar Alimento' : 'Guardar Actividad'}

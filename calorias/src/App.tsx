@@ -83,7 +83,7 @@ function App() {
           {!isEmptyActivities && (
             <div className="mt-12 flex justify-center">
               <button
-                className="px-8 py-3 border border-slate-200 text-slate-400 hover:text-red-500 hover:border-red-100 hover:bg-red-50 font-bold uppercase text-xs tracking-widest rounded-full transition-all"
+                className="btn-secondary"
                 onClick={restartApp}
               >
                 Reiniciar Aplicación

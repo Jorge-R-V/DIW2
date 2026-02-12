@@ -48,7 +48,7 @@ export default function ComoFunciona() {
               icon: "check"
             },
             {
-              title: "3. Empodera tu salud",
+              title: "3. Toma el control de tu bienestar",
               desc: "Visualiza tus avances cada día. Te damos la claridad necesaria para saber que vas por el buen camino hacia tus objetivos, sin estrés y con total control.",
               icon: "chart"
             }
@@ -68,7 +68,6 @@ export default function ComoFunciona() {
 
         <section className="mt-32 text-center bg-slate-900 text-white p-12 md:p-20 rounded-[3rem] shadow-2xl animate-fade-in-up [animation-delay:400ms]">
           <h2 className="text-3xl md:text-4xl font-black mb-6 tracking-tight">¿Listo para empezar?</h2>
-          <p className="text-slate-400 mb-10 max-w-lg mx-auto">Únete a miles de personas que ya están transformando su salud con NutriTrack.</p>
           <a 
             href="calculadora.html"
             className="inline-block px-12 py-5 bg-lime-500 text-white font-black uppercase tracking-widest text-xs rounded-full shadow-2xl shadow-lime-900/20 hover:bg-lime-400 transition-all hover:-translate-y-1"

@@ -2,7 +2,6 @@
 
 NutriTrack no es solo una calculadora de calorías; es tu compañero digital para un estilo de vida saludable. Diseñado con una interfaz moderna y fluida, te permite monitorear tu nutrición y actividad física con precisión científica y elegancia visual.
 
-
 ## 🚀 Características
 
 - **Calculadora de Macronutrientes**: Desglose detallado de grasas, azúcares, proteínas, carbohidratos, fibra y sodio.

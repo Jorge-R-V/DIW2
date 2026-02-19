@@ -11,7 +11,7 @@
 - **Persistencia de Datos**:  
   Tus datos se guardan localmente en tu navegador (`LocalStorage`), por lo que no perderás tu progreso al cerrar la pestaña.
 
-## 🛠️ Stack Tecnológico
+## Tecnologías Utilizadas
 
 Este proyecto ha sido construido utilizando las últimas tecnologías del desarrollo web:
 

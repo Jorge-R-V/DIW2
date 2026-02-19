@@ -4,6 +4,7 @@ import type { Activity } from "../types"
 
 export const useActivity = () => {
 
+    // Recupera las actividades guardadas en LocalStorage o retorna un array vacío si no hay nada
     const initialActivities = () : Activity[] => {
         const localStorageActivities = localStorage.getItem('activities')
         return localStorageActivities ? JSON.parse(localStorageActivities) : []
@@ -12,15 +13,19 @@ export const useActivity = () => {
     const [activities, setActivities] = useState<Activity[]>(initialActivities)
     const [activeId, setActiveId] = useState<Activity['id']>('')
 
+    // Efecto secundario para guardar en LocalStorage cada vez que el estado de 'activities' cambia
     useEffect(() => {
         localStorage.setItem('activities', JSON.stringify(activities))
     }, [activities])
 
+    // Función para manejar el guardado de actividades (Nueva o Actualización)
     const saveActivity = (activity : Activity) => {
         if(activeId) {
+            // Si hay un activeId, estamos editando una actividad existente
             setActivities(activities.map( item => item.id === activeId ? activity : item ))
             setActiveId('')
         } else {
+            // Si no, estamos creando una nueva actividad
             setActivities([...activities, {...activity, id: uuidv4()}])
         }
     }
@@ -33,6 +38,7 @@ export const useActivity = () => {
         setActivities([])
     }
 
+    // Balance neto de calorías (Consumidas - Quemadas)
     const netCalories = useMemo(() => {
         const total = activities.reduce((total, activity) => 
             activity.category === 1 ? total + activity.calories : total - activity.calories, 0

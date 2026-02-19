@@ -1,61 +1,78 @@
-# 🥗 NutriTrack - Nutrición Inteligente
+# NutriTrack - Nutrición Inteligente
 
-NutriTrack no es solo una calculadora de calorías; es tu compañero digital para un estilo de vida saludable. Diseñado con una interfaz moderna y fluida, te permite monitorear tu nutrición y actividad física con precisión científica y elegancia visual.
+**NutriTrack** es una aplicación web diseñada para ayudarte a llevar un control preciso de tu ingesta calórica y actividad física. NutriTrack facilita el seguimiento de tus macronutrientes diarios y te motiva a alcanzar tus objetivos de salud.
 
-## 🚀 Características
+## Características Principales
 
-- **Calculadora de Macronutrientes**: Desglose detallado de grasas, azúcares, proteínas, carbohidratos, fibra y sodio.
-- **Registro de Actividades**: Control total sobre tus comidas y entrenamientos con historial interactivo.
-- **Sistema de Iconos Optimizado**: Implementación de una arquitectura de sprites SVG propia para una mínima huella de red.
-- **Diseño Premium**: Experiencia ultra-responsiva con animaciones fluidas y estética de cristal (glassmorphism).
-- **Cámara Inteligente (Concepto)**: Interfaz de vanguardia lista para la integración con IA para el escaneo de alimentos.
+- **Calculadora de Calorías Avanzada**:  
+  Obtienes un desglose detallado de macronutrientes: calorías, grasas, carbohidratos, proteínas, fibra, azúcar y sodio.
+- **Registro de Actividades**:  
+  Añade fácilmente comidas y ejercicios. El sistema calcula automáticamente el balance energético (calorías consumidas vs. quemadas).
+- **Persistencia de Datos**:  
+  Tus datos se guardan localmente en tu navegador (`LocalStorage`), por lo que no perderás tu progreso al cerrar la pestaña.
 
-## 🛠️ Herramientas Utilizadas
+## 🛠️ Stack Tecnológico
 
-NutriTrack utiliza lo último en desarrollo web moderno:
+Este proyecto ha sido construido utilizando las últimas tecnologías del desarrollo web:
 
-- **React 19**: Biblioteca líder para interfaces dinámicas.
-- **Vite**: Motor de compilación de nueva generación.
-- **Tailwind CSS**: Framework utilitario para diseño sofisticado y responsivo.
-- **TypeScript**: Tipado estático para un código robusto y libre de errores.
-- **Custom SVG Sprite Architecture**: Sistema a medida que elimina la dependencia de librerías de iconos externas pesadas.
+- **[React 19](https://react.dev/)**: Biblioteca para interfaces de usuario.
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS 4](https://tailwindcss.com/)
+- [ESLint](https://eslint.org/)\*\*
 
-## 📦 Instalación y Desarrollo
+## Estructura del Proyecto
 
-Sigue estos pasos para ejecutar el proyecto en tu entorno local:
+El proyecto está organizado de la siguiente manera:
 
-1. **Instalar dependencias**:
-
-   ```bash
-   npm install
-   ```
-
-2. **Iniciar servidor de desarrollo**:
-   ```bash
-   npm run dev
-   ```
-
-## 🏗️ Compilación para Producción
-
-Para generar el código fuente optimizado y compilar el sistema de diseño:
-
-```bash
-npm run build
+```text
+src/
+├── components/       # Componentes reutilizables (Formularios, Listados, Iconos)
+├── data/             # Datos estáticos (Categorías, Base de datos de alimentos/ejercicios)
+├── hooks/            # Custom Hooks (Lógica de negocio: useActivity)
+├── types/            # Definiciones de tipos TypeScript
+├── App.tsx           # Componente principal
+└── ...               # Entradas de la aplicación
 ```
 
-Este comando realiza:
+### Páginas Disponibles
 
-- Verificación exhaustiva de tipos.
-- Compilación y minificación del código fuente.
-- Purga dinámica de CSS sobrante para una velocidad de carga instantánea.
+- **Inicio**: `index.html` (Landing Page)
+- **Calculadora**: `calculadora.html` (App principal)
+- **Cámara**: `camara.html` (Concepto de escaneo por IA)
+- **Cómo Funciona**: `como-funciona.html` (Guía de usuario)
 
-## 📂 Arquitectura del Proyecto
+## Instalación y Uso
 
-- `src/components/Icon.tsx`: Componente centralizado para la gestión de iconos.
-- `public/assets/sprite.svg`: Almacén único de activos vectoriales.
-- `src/hooks/`: Lógica de negocio y gestión de estado personalizada.
-- `src/data/`: Definiciones de categorías y metadatos de nutrición.
+Sigue estos pasos para ejecutar el proyecto en tu máquina local:
+
+1.  **Clonar el repositorio** (o descargar el código):
+
+    ```bash
+    git clone <url-del-repositorio>
+    cd calorias
+    ```
+
+2.  **Instalar dependencias**:
+    Asegúrate de tener [Node.js](https://nodejs.org/) instalado.
+
+    ```bash
+    npm install
+    ```
+
+3.  **Iniciar el servidor de desarrollo**:
+    ```bash
+    npm run dev
+    ```
+    Abre tu navegador en la URL que aparece en la terminal (usualmente `http://localhost:5173`).
+
+## Scripts Disponibles
+
+- `npm run dev`: Inicia el servidor de desarrollo.
+- `npm run build`: Compila la aplicación para producción.
+- `npm run preview`: Vista previa local de la compilación de producción.
+- `npm run lint`: Ejecuta ESLint para buscar problemas en el código.
 
 ---
 
-**Desarrollado con ❤️ por [Jorge-R-V](https://github.com/Jorge-R-V)**
+**Desarrollado por [Jorge-R-V](https://github.com/Jorge-R-V)**

@@ -1,7 +1,7 @@
 export default function Camara() {
   return (
     <div className="min-h-screen flex items-center justify-center font-sans overflow-hidden select-none relative">
-      {/* Light Technical Background */}
+
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
@@ -17,13 +17,13 @@ export default function Camara() {
 
       <div className="relative z-10 max-w-2xl w-full mx-6">
         <div className="relative group">
-          {/* Content Card */}
+
           <div className="backdrop-blur-3xl bg-white/60 p-12 md:p-24 rounded-[3rem] border border-white shadow-2xl shadow-lime-900/5 relative overflow-hidden transition-all duration-500 group-hover:bg-white/80">
-            {/* Scanning Line */}
+
             <div className="absolute top-0 left-0 h-[3px] w-full z-10 opacity-0 animate-scan bg-gradient-to-r from-transparent via-lime-500/50 to-transparent shadow-[0_0_20px_rgba(132,204,22,0.4)]"></div>
 
             <div className="relative flex flex-col items-center">
-              {/* Icono NutriTrack */}
+
               <div className="mb-12 relative animate-float">
                 <div className="absolute inset-0 bg-lime-400 blur-3xl opacity-20"></div>
                 <div className="w-24 h-24 bg-gradient-to-br from-lime-400 to-emerald-500 rounded-3xl flex items-center justify-center relative z-10 shadow-xl shadow-lime-200/50 rotate-3 transition-transform hover:rotate-0">

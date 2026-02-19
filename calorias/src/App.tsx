@@ -7,6 +7,7 @@ import { useActivity } from "./hooks/useActivity"
 
 function App() {
 
+  // Hook personalizado que maneja toda la lógica del estado (activities, totales, acciones)
   const {
     activities,
     activeId,
@@ -26,6 +27,7 @@ function App() {
     isEmptyActivities
   } = useActivity()
 
+  // Cuando se pulsa "Editar", hacemos scroll suave hacia arriba para ver el formulario
   useEffect(() => {
     if(activeId) {
       window.scrollTo({
@@ -37,7 +39,7 @@ function App() {
 
   return (
     <div className="relative min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-lime-200">
-      {/* Dynamic Background */}
+
       <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
         <div className="absolute top-[-15%] left-[-10%] w-[40vw] h-[40vw] bg-lime-100 rounded-full mix-blend-multiply filter blur-[120px] opacity-40 animate-blob"></div>
         <div className="absolute top-[10%] right-[-10%] w-[35vw] h-[35vw] bg-emerald-100 rounded-full mix-blend-multiply filter blur-[120px] opacity-30 animate-blob [animation-delay:4s]"></div>

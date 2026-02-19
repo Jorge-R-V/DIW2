@@ -9,6 +9,7 @@ type FormularioActividadesProps = {
     activities: Activity[]
 }
 
+// Estado inicial del formulario vacío
 const initialState : Activity = {
     id: '',
     category: 1,
@@ -26,12 +27,15 @@ const initialState : Activity = {
 
 export default function FormularioActividades({saveActivity, activeId, activities} : FormularioActividadesProps) {
 
+    // Inicializa el estado 'activity'
     const [activity, setActivity] = useState<Activity>(() => {
+        // Si hay un activeId, significa que estamos editando: busca la actividad en el array
         if (activeId) {
             return activities.find(stateActivity => stateActivity.id === activeId)!
         }
         
-        // Check for category in URL
+
+        // Si no, revisa si hay un parámetro 'category' en la URL para pre-seleccionar (1: Comida, 2: Ejercicio)
         const params = new URLSearchParams(window.location.search)
         const categoryParam = params.get('category')
         if (categoryParam && (categoryParam === '1' || categoryParam === '2')) {
@@ -54,11 +58,14 @@ export default function FormularioActividades({saveActivity, activeId, activitie
         sodium: activity.sodium / (activity.quantity || 1),
     })
 
+    // Maneja los cambios en los inputs del formulario
     const handleChange = (e: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>) => {
         const id = e.target.id
         const value = e.target.value
+        // Determina si el campo debe ser tratado como número
         const isNumberField = ['category', 'calories', 'fat', 'sugar', 'quantity', 'protein', 'carbs', 'fiber', 'sodium'].includes(id)
 
+        // Lógica especial para cuando cambia la 'cantidad' de un alimento
         if (id === 'quantity' && activity.category === 1) {
             const newQuantity = +value
             
@@ -67,6 +74,7 @@ export default function FormularioActividades({saveActivity, activeId, activitie
                 return
             }
 
+            // Recalcula automáticamente todos los nutrientes basándose en la nueva cantidad y los valores base
             setActivity({
                 ...activity,
                 quantity: newQuantity,
@@ -83,6 +91,7 @@ export default function FormularioActividades({saveActivity, activeId, activitie
 
         const newValue = isNumberField ? +value : value
 
+        // Si se cambia manualemente un nutriente, actualizamos los valores base proporcionalmente
         if (['calories', 'fat', 'sugar', 'protein', 'carbs', 'fiber', 'sodium'].includes(id) && activity.category === 1) {
             const qty = activity.quantity || 1
             setBaseNutrients({
@@ -97,8 +106,10 @@ export default function FormularioActividades({saveActivity, activeId, activitie
         })
     }
 
+    // Función para poblar el formulario cuando se selecciona un producto predefinido
     const handleProductSelect = (e: ChangeEvent<HTMLSelectElement>) => {
         if(e.target.value === 'manual') {
+            // Reinicia el formulario para entrada manual
             const resetActivity = {
                 ...initialState,
                 category: activity.category,
@@ -113,6 +124,7 @@ export default function FormularioActividades({saveActivity, activeId, activitie
 
         const selectedProd = products.find(p => p.name === e.target.value)
         if(selectedProd) {
+            // Carga todos los datos del producto seleccionado
             setActivity({
                 ...activity,
                 name: selectedProd.name,

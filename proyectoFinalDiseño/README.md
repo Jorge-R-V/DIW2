@@ -19,7 +19,7 @@ Este proyecto ha sido construido utilizando las últimas tecnologías del desarr
 - [TypeScript](https://www.typescriptlang.org/)
 - [Vite](https://vitejs.dev/)
 - [Tailwind CSS 4](https://tailwindcss.com/)
-- [ESLint](https://eslint.org/)\*\*
+- [ESLint](https://eslint.org/)
 
 ## Estructura del Proyecto
 
@@ -50,7 +50,7 @@ Sigue estos pasos para ejecutar el proyecto en tu máquina local:
 
     ```bash
     git clone <url-del-repositorio>
-    cd calorias
+    cd proyecto-final-diseño
     ```
 
 2.  **Instalar dependencias**:
